@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# preinstall.sh
+# pdfwriter
+#
+# Copyright 2016 Rodney I. Yager
+
+if [ -e /Library/Printers/Lisanet/PDFwriter/uninstall.sh ] 
+then
+	# we are replacing the earlier Lisanet package
+	/Library/Printers/Lisanet/PDFwriter/uninstall.sh
+fi
+
