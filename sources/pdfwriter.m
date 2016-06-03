@@ -1,3 +1,12 @@
+/* pdfwriter.m
+ *
+ * (c) 2016 Rodney I. Yager
+ *  GPL version 2 or later
+ *
+ *  Principal change from earlier versions in the addition of an icon to the user spool folder.
+ *
+*/
+
 /* pdfwriter.c
  *
  * PDFwriter is a CUPS backend for Mac OS X to save a document as PDF file
@@ -207,7 +216,7 @@ static int create_userdir(struct passwd *passwd, char *userdirname) {
         }
     
         // set icon for userdirname
-        [NSWorkspace.sharedWorkspace setIcon:[NSImage.alloc initByReferencingFile:@"/Library/Printers/RWTS/PDFwriter/PDFwriterFolder.icns"] forFile:[NSString stringWithUTF8String:dirname] options:NSExcludeQuickDrawElementsIconCreationOption];
+        [NSWorkspace.sharedWorkspace setIcon:[NSImage.alloc initByReferencingFile:@"/Library/Printers/RWTS/PDFwriter/PDFfolder.icns"] forFile:[NSString stringWithUTF8String:dirname] options:NSExcludeQuickDrawElementsIconCreationOption];
         
 
         log_event(CPDEBUG, "output directory created", dirname);
