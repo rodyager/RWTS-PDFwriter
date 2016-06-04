@@ -216,7 +216,7 @@ static int create_userdir(struct passwd *passwd, char *userdirname) {
         }
     
         // set icon for userdirname
-        [NSWorkspace.sharedWorkspace setIcon:[NSImage.alloc initByReferencingFile:@"/Library/Printers/RWTS/PDFwriter/PDFfolder.icns"] forFile:[NSString stringWithUTF8String:dirname] options:NSExcludeQuickDrawElementsIconCreationOption];
+        [NSWorkspace.sharedWorkspace setIcon:[NSImage.alloc initByReferencingFile:@"/Library/Printers/RWTS/PDFwriter/PDFfolder.png"] forFile:[NSString stringWithUTF8String:dirname] options:NSExcludeQuickDrawElementsIconCreationOption];
         
 
         log_event(CPDEBUG, "output directory created", dirname);

@@ -9,23 +9,8 @@ An OSX print to pdf-file printer driver
 ##About RWTS PDFwriter
 **RWTS PDFwriter** in an OSX 10.11 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
 
-## Installation, Configuration and Usage Instructions
-Download the installer package by clicking on the printer icon above and install as usual.
-
-After Installation has been completed, open **System Preferences** and select **Printers & Scanners**. You will see a window like this. (In this example, there's already a printer installed)
-
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/README.rtfd/P%26S1.tiff)
-
-Now click on the + button to add a new printer. 
-A new window will open. Click on the Default icon if it is not already selected. You will see a list of all the  printers currently directly connected to your Mac or advertising their existence on your network.
-
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/README.rtfd/P%26S2.tiff)
-
-Now select **PDFwriter** and wait a few seconds until **RWTS PDFwriter** appears in the combobox at the bottom of the dialog window.
-
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/README.rtfd/P%26S3.tiff)
-
-Click the Add button and your new printer will be ready for use. 
+## Installation and Usage Instructions
+Download the installer package by clicking on the printer icon above and install as usual. After installation, your new printer will be ready for use.
 
 ### Usage
 

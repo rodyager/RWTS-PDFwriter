@@ -34,14 +34,13 @@ mkdir -m 775 pkgroot/Users/Shared
 echo "#### populating directory structure"
 
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
-iconutil -c icns -o $PDFWRITERDIR/PDFfolder.icns PDFfolder.iconset
-clang -Oz -o $PDFWRITERDIR/pdfwriter -framework appkit -arch x86_64  -mmacosx-version-min=10.9 pdfwriter.m
-cp uninstall.sh $PDFWRITERDIR/uninstall.sh
+clang -Oz -o $PDFWRITERDIR/pdfwriter -framework appkit -arch x86_64 -fobjc-arc  -mmacosx-version-min=10.9 pdfwriter.m
+cp uninstall.sh PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 ln -s  /var/spool/pdfwriter pkgroot/Users/Shared/PDFwriter
 
 chmod 700 $PDFWRITERDIR/pdfwriter
-chmod 755 $PDFWRITERDIR/uninstall.sh           # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
+chmod 755 $PDFWRITERDIR/uninstall.sh    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
 chmod 644 $PPDDIR/"$PPDFILE".gz
 
 cp PDFWriter.iconset/icon_256x256.png resources/background.png
@@ -50,31 +49,27 @@ cp postinstall preinstall scripts/
 
 echo "#### building installer package"
 
-pkgbuild --root pkgroot --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 1.0 pdfwriter.pkg
+pkgbuild --root pkgroot --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 1.0 pdfwriter.pkg > /dev/null
 
 echo "#### building distribution file"
-productbuild --synthesize --resources resources  --product requirements  --package pdfwriter.pkg distribution.dist
+productbuild --synthesize --product requirements  --package pdfwriter.pkg distribution.dist > /dev/null
 
 sed -i '' '3 a\
 \    <title>RWTS PDFwriter</title>\
 \    <background file="background.png" alignment="bottomleft" scaling="none"/>\
-\    <license file="License"/>
+\    <license file="License"/>\
+\    <readme file="README.rtfd"  />
 ' distribution.dist
 
 echo "#### building product"
-productbuild --distribution distribution.dist --resources resources --product requirements  product.pkg
+productbuild --distribution distribution.dist --resources resources product.pkg > /dev/null
 
-
-# Have to add README to installer separately as productbuild can't handle rtfd resources
-pkgutil --expand product.pkg  expanded
-sed -i '' '6 a\
-\    <readme file="README.rtfd"  />
-' expanded/Distribution
-
+# We need to add README to installer separately as productbuild can't handle rtfd resources
+pkgutil --expand product.pkg expanded
 cp -r README.rtfd expanded/Resources/
 pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
-if [ "$SIGNSTRING"  ]; then echo "#### signing product"; productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg
+if [ $SIGNSTRING  ]; then echo "#### signing product"; productsign --sign $SIGNSTRING RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"

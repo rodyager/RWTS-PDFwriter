@@ -7,6 +7,8 @@
 # Copyright 2010 Simone Karin Lehmann. All rights reserved.
 # Modified 2016 Rodney I. Yager
 
+lpadmin -x pdfwriter
+
 sudo rm /Library/Printers/RWTS/PDFwriter/*
 sudo rm /usr/libexec/cups/backend/pdfwriter
 sudo rm /Library/Printers/PPDs/Contents/Resources/RWTS\ PDFwriter.gz

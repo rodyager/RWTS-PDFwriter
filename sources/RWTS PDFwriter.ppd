@@ -334,16 +334,6 @@
 *PaperDimension TabloidExtra/Tabloid Extra: "864 1296"
 *PaperDimension Tabloid/Tabloid: "792 1224"
 
-*OpenUI *Resolution/Output Resolution: PickOne
-*OrderDependency: 100 AnySetup *Resolution
-*DefaultResolution: 300dpi
-*Resolution 150dpi/150 DPI: "<</HWResolution[150 150]>>setpagedevice"
-*Resolution 300dpi/300 DPI: "<</HWResolution[300 300]>>setpagedevice"
-*Resolution 600dpi/600 DPI: "<</HWResolution[600 600]>>setpagedevice"
-*Resolution 1200dpi/1200 DPI: "<</HWResolution[1200 1200]>>setpagedevice"
-*Resolution 2400dpi/2400 DPI: "<</HWResolution[2400 2400]>>setpagedevice"
-*CloseUI: *Resolution
-
 *CloseGroup: General
 
 *DefaultFont: Courier
