@@ -6,7 +6,9 @@
 # Created by Rodney I. Yager on 27.05.16
 # Copyright 2016 Rodney I. Yager. All rights reserved
 
-
+if [ -z "$SDKROOT" ]; then
+	export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+fi
 PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
 PPDFILE="RWTS PDFwriter"
