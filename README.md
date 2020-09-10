@@ -1,12 +1,12 @@
-#RWTS PDFwriter
+# RWTS PDFwriter
 &copy; 2016 Rodney I. Yager
 
 An OSX print to pdf-file printer driver
 
-###[![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.1/RWTS-PDFwriter.pkg)
+### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.1/RWTS-PDFwriter.pkg)
 
 
-##About RWTS PDFwriter
+## About RWTS PDFwriter
 **RWTS PDFwriter** in an OSX 10.11 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
 
 ## Installation and Usage Instructions
