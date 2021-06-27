@@ -20,3 +20,7 @@ launchctl load /System/Library/LaunchDaemons/org.cups.cupsd.plist
 
 # install printer
 lpadmin -p PDFwriter -E -v pdfwriter:/ -P /Library/Printers/PPDs/Contents/Resources/RWTS\ PDFwriter.gz -o printer-is-shared=false
+
+# folder actions
+ln -sf /Library/Printers/RWTS/PDFwriter/"Folder Actions"/"PDFwriter - Move PDFs Install.scpt" /Library/Scripts/"Folder Action Scripts"
+ln -sf /Library/Printers/RWTS/PDFwriter/"Folder Actions"/"PDFwriter - Move PDFs.scpt" /Library/Scripts/"Folder Action Scripts"
