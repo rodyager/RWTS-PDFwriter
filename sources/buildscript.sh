@@ -32,7 +32,7 @@ mkdir -p ../build
 rm -rf ../build/"Folder Actions"
 cp -R "Folder Actions" ../build/
 find ../build/"Folder Actions" -name "*.applescript" -exec bash -c "src=\"{}\" && tgt=\"\${src%.*}\".scpt && osacompile -o \"\$tgt\" \"\$src\"" \;
-find ../build/"Folder Actions" \( -name "*.applescript" -o -name ".*" \)  -exec rm {} \;
+find ../build/"Folder Actions" -name ".*" -exec rm {} \;
 
 echo "#### making directory structure"
 mkdir pkgroot resources scripts

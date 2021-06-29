@@ -9,7 +9,7 @@
 
 lpadmin -x pdfwriter
 
-osascript /Library/Printers/RWTS/PDFwriter/"Folder Actions"/"PDFwriter - Move PDFs Uninstall.scpt"
+osascript /Library/Printers/RWTS/PDFwriter/"Folder Actions"/"PDFwriter - Move PDFs Uninstall.applescript"
 sudo rm /Library/Scripts/"Folder Action Scripts"/"PDFwriter - Move PDFs Install.scpt" 2>/dev/null
 sudo rm /Library/Scripts/"Folder Action Scripts"/"PDFwriter - Move PDFs.scpt" 2>/dev/null
 sudo rm /Library/Printers/RWTS/PDFwriter/"Folder Actions"/*

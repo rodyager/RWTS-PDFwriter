@@ -15,5 +15,5 @@ if [ ! -d "/var/spool/pdfwriter" ]; then
 fi
 
 # Install Folder Action
-osascript "$dir/Folder Actions/PDFwriter - Move PDFs Install.scpt"
+osascript "$dir/Folder Actions/PDFwriter - Move PDFs Install.applescript"
 

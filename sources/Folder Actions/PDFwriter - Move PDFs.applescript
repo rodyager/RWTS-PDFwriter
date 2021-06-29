@@ -19,9 +19,10 @@ on adding folder items to theAttachedFolder after receiving theNewItems
   tell application "System Events"
     set theDstFolder to my GetAlias(my GetDestinationPath())
     if not theDstFolder is missing value then
+      set theDstFolderPath to the POSIX path of theDstFolder
       repeat with anItem in theNewItems
         if (name extension of anItem) is "pdf" then
-          move anItem to theDstFolder without replacing
+          move anItem to theDstFolderPath without replacing
         end if
       end repeat
     end if
@@ -39,9 +40,10 @@ on run argv
     set theSrcFolder to my GetAlias(theSrcFolderPath)
     set theDstFolder to my GetAlias(my GetDestinationPath())
     if not theSrcFolder is missing value and not theDstFolder is missing value then
+      set theDstFolderPath to the POSIX path of theDstFolder
       set pdfs to (every file in theSrcFolder whose name extension is "pdf")
       repeat with pdf in pdfs
-        move pdf to theDstFolder without replacing
+        move pdf to theDstFolderPath without replacing
       end repeat
     end if
   end tell
