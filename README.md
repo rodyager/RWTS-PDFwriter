@@ -22,6 +22,10 @@ The “printed” PDF files produced will be stored in the directory
 
 For convenient access to this folder, simply drag it to the right hand end of your dock.
 
+Alternatively, choose an output directory for the printed PDF files by running the following:
+
+`   /Library/Printers/RWTS/PDFwriter/choosefolder.sh   `
+
 ## Removal instructions
 If you want to uninstall **PDFwriter**, open Terminal.app, type 
 

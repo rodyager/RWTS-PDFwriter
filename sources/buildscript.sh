@@ -18,7 +18,7 @@ while getopts s: opt; do
 	   s)
 		SIGNSTRING=${OPTARG}
 		;;
-	   *)  
+	   *)
 		echo "usage: buildscript [-s \"<your signing identity>\"]"
 		exit 0
 		;;
@@ -26,6 +26,7 @@ while getopts s: opt; do
 done
 
 cd "$(dirname "$0")"
+
 echo "#### making directory structure"
 mkdir pkgroot resources scripts
 mkdir -m 775 pkgroot/Library pkgroot/Library/Printers pkgroot/Library/Printers/RWTS
@@ -37,9 +38,13 @@ echo "#### populating directory structure"
 
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
 clang -Oz -o $PDFWRITERDIR/pdfwriter -framework appkit -arch x86_64 -fobjc-arc  -mmacosx-version-min=10.9 pdfwriter.m
-cp uninstall.sh PDFfolder.png $PDFWRITERDIR/
+cp choosefolder.sh uninstall.sh PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 ln -s  /var/spool/pdfwriter pkgroot/Users/Shared/PDFwriter
+cp -R "Folder Actions" $PDFWRITERDIR/
+find $PDFWRITERDIR/"Folder Actions" -name "*.applescript" -exec /bin/bash -c "src=\"{}\" && tgt=\"\${src%.*}\".scpt && osacompile -o \"\$tgt\" \"\$src\"" \;
+find $PDFWRITERDIR/"Folder Actions" -name ".*" -exec rm {} \;
+
 
 chmod 700 $PDFWRITERDIR/pdfwriter
 chmod 755 $PDFWRITERDIR/uninstall.sh    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
