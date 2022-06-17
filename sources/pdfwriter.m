@@ -448,7 +448,8 @@ int main(int argc, char *argv[]) {
         log_event(CPDEBUG, "no title found - using default value", title);
     }
     else {
-        snprintf(title, BUFSIZE, "job_%i %s", job, cmdtitle);
+//        snprintf(title, BUFSIZE, "job_%i %s", job, cmdtitle);
+        snprintf(title, BUFSIZE, "%s", cmdtitle);
         log_event(CPDEBUG, "title successfully retrieved", title);
     }
 
