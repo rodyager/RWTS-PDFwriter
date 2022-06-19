@@ -5,7 +5,7 @@ An OSX print to pdf-file printer driver
 
 ### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.3/RWTS-PDFwriter.pkg)
 
-### [![]() Click to download utility to choose save destination.] (https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.3/PDFwriterUtility.app)
+### [Click to download utility to choose save destination.] (https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.3/PDFwriterUtility.app)
 
 
 ## About RWTS PDFwriter
