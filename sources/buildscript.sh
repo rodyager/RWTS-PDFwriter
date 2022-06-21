@@ -10,16 +10,21 @@ if [ -z "$SDKROOT" ]; then
 	export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 fi
 PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
+UTILITIESDIR="pkgroot/Applications/Utilities"
+UTILITYAPP="PDFWriter Utility.app"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
 PPDFILE="RWTS PDFwriter"
 
-while getopts s: opt; do
+while getopts "s:n:" opt; do
 	case ${opt} in
 	   s)
 		SIGNSTRING=${OPTARG}
 		;;
+       n)
+        NOTARYSTRING=${OPTARG}
+        ;;
 	   *)  
-		echo "usage: buildscript [-s \"<your signing identity>\"]"
+		echo "usage: buildscript [-s \"<your signing identity>\"] [-n \"<your keychain profile>\"]"
 		exit 0
 		;;
 	esac
@@ -29,17 +34,15 @@ cd "$(dirname "$0")"
 echo "#### making directory structure"
 mkdir pkgroot resources scripts
 mkdir -m 775 pkgroot/Library pkgroot/Library/Printers pkgroot/Library/Printers/RWTS
-mkdir -m 755 $PDFWRITERDIR pkgroot/Library/Printers/PPDs pkgroot/Library/Printers/PPDs/Contents $PPDDIR pkgroot/Users
-mkdir -m 775 pkgroot/Users/Shared
-
+mkdir -m 755 $PDFWRITERDIR pkgroot/Library/Printers/PPDs pkgroot/Library/Printers/PPDs/Contents $PPDDIR
+mkdir -m 775 pkgroot/Applications $UTILITIESDIR
 
 echo "#### populating directory structure"
-
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
-clang -Oz -o $PDFWRITERDIR/pdfwriter -framework appkit -arch x86_64 -fobjc-arc  -mmacosx-version-min=10.9 pdfwriter.m
+cp pdfwriter  $PDFWRITERDIR/
+cp -r "$UTILITYAPP" $UTILITIESDIR/
 cp uninstall.sh PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
-ln -s  /var/spool/pdfwriter pkgroot/Users/Shared/PDFwriter
 
 chmod 700 $PDFWRITERDIR/pdfwriter
 chmod 755 $PDFWRITERDIR/uninstall.sh    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
@@ -71,9 +74,15 @@ pkgutil --expand product.pkg expanded
 cp -r README.rtfd expanded/Resources/
 pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
-if [ $SIGNSTRING  ]; then echo "#### signing product"; productsign --sign $SIGNSTRING RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null
+if [ $SIGNSTRING  ]; then echo "#### signing product";
+    productsign --sign $SIGNSTRING RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null;
+    if [ $NOTARYSTRING  ]; then echo "#### notarizing product";
+        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile $NOTARYSTRING --wait;
+        xcrun stapler staple ../RWTS-PDFwriter.pkg;
+    fi
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"
 rm -r pkgroot resources scripts expanded *.pkg distribution.dist
+    
 exit 0

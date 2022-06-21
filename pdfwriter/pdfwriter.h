@@ -12,19 +12,19 @@
  
  cups-pdf.h -- CUPS Backend Header File (version 2.5.0, 2009-01-26)
    16.05.2003, Volker C. Behr
-   Experimentelle Physik V, Universitaet Wuerzburg 
+   Experimentelle Physik V, Universitaet Wuerzburg
    behr@physik.uni-wuerzburg.de
    http://www.cups-pdf.de
 
 
-   This code may be freely distributed as long as this header 
-   is preserved. Changes to the code should be clearly indicated.   
+   This code may be freely distributed as long as this header
+   is preserved. Changes to the code should be clearly indicated.
 
    This code is distributed under the GPL.
    (http://www.gnu.org/copyleft/gpl.html)
 
-   For more detailed licensing information see cups-pdf.c in the 
-   corresponding version number.			             */
+   For more detailed licensing information see cups-pdf.c in the
+   corresponding version number.                         */
 
 
 
@@ -38,16 +38,16 @@
 
 typedef char cp_string[BUFSIZE];
 
-static struct {    
+static struct {
     char *anondirname;
     char *anonuser;
     char *grp;
     char *log;
-    char *outdir;        
-    int		cut;
+    char *outdir;
+    int        cut;
     int     truncate;
-    short 	logtype;
-    short	lowercase;
+    short     logtype;
+    short    lowercase;
 } conf;
 
 

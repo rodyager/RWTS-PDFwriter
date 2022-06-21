@@ -18,15 +18,15 @@
  * This source is a heavily patched version of CUPS-PDF
  * For more details see the ChangeLog file.
  *
-*/ 
+*/
 /* cups-pdf.c -- CUPS Backend (version 2.5.0, 2009-01-26)
    08.02.2003, Volker C. Behr
-   Experimentelle Physik V, Universitaet Wuerzburg 
+   Experimentelle Physik V, Universitaet Wuerzburg
    behr@physik.uni-wuerzburg.de
    http://www.cups-pdf.de
 
-   This code may be freely distributed as long as this header 
-   is preserved. 
+   This code may be freely distributed as long as this header
+   is preserved.
 
    This code is distributed under the GPL.
    (http://www.gnu.org/copyleft/gpl.html)
@@ -52,9 +52,9 @@
    ---------------------------------------------------------------------------
   
    If you want to redistribute modified sources/binaries this header
-   has to be preserved and all modifications should be clearly 
+   has to be preserved and all modifications should be clearly
    indicated.
-   In case you want to include this code into your own programs 
+   In case you want to include this code into your own programs
    I would appreciate your feedback via email.
 
   
@@ -79,7 +79,7 @@
 
 #include "pdfwriter.h"
 
-extern int errno;
+//extern int errno;
 
 static FILE *logfp=NULL;
 
@@ -104,22 +104,22 @@ static void log_event(short type, char message[], char *detail) {
     time_t secs;
     char ctype[8], *timestring;
     
-    if (strlen(conf.log) && (type & conf.logtype)) { 
+    if (strlen(conf.log) && (type & conf.logtype)) {
         time(&secs);
         timestring=ctime(&secs);
         timestring[strlen(timestring)-1]='\0';
         
-        if (type == CPERROR) 
+        if (type == CPERROR)
             sprintf(ctype, "ERROR");
         else if (type == CPSTATUS)
             sprintf(ctype, "STATUS");
         else
             sprintf(ctype, "DEBUG");
         if (detail != NULL)  {
-            while (detail[strlen(detail)-1] == '\n') 
+            while (detail[strlen(detail)-1] == '\n')
                 detail[strlen(detail)-1]='\0';
             fprintf(logfp,"%s  [%s] %s (%s)\n", timestring, ctype, message, detail);
-            if ((conf.logtype & CPDEBUG) && (type & CPERROR)) 
+            if ((conf.logtype & CPDEBUG) && (type & CPERROR))
                 fprintf(logfp,"%s  [DEBUG] ERRNO: %d\n", timestring, errno);
         }
         else
@@ -132,7 +132,7 @@ static void log_event(short type, char message[], char *detail) {
 static int create_dir(char *dirname, int nolog) {
     struct stat fstatus;
     char buffer[BUFSIZE],*delim;
-    int i;
+    unsigned long i;
     
     while ((i=strlen(dirname))>1 && dirname[i-1]=='/')
         dirname[i-1]='\0';
@@ -183,7 +183,7 @@ static int init() {
     /* we always use a log file */
     
     if (stat(conf.log, &fstatus) || !S_ISDIR(fstatus.st_mode)) {
-        if (create_dir(conf.log, 1)) 
+        if (create_dir(conf.log, 1))
             return 1;
         if (chmod(conf.log, 0700))
             return 1;
@@ -198,12 +198,12 @@ static int init() {
 static int create_userdir(struct passwd *passwd, char *userdirname) {
     struct stat fstatus;
     mode_t mode;
-    int size;
+    unsigned long size;
     char *dirname;
 
     size = strlen(conf.outdir) + strlen(userdirname) + 2;
     dirname = calloc(size, sizeof(char));
-    if (dirname == NULL) 
+    if (dirname == NULL)
         return 1;
     snprintf(dirname, size, "%s/%s", conf.outdir, userdirname);
     
@@ -221,9 +221,9 @@ static int create_userdir(struct passwd *passwd, char *userdirname) {
 
         log_event(CPDEBUG, "output directory created", dirname);
         
-        if (!strcmp(passwd->pw_name, conf.anonuser)) 
+        if (!strcmp(passwd->pw_name, conf.anonuser))
             mode = (mode_t)(0777);
-        else 
+        else
             mode = (mode_t)(0700);
         
         
@@ -251,7 +251,7 @@ static void replace_string(char *string) {
     int i;
     
     log_event(CPDEBUG, "removing special characters from title", string);
-    for (i = 0; i < strlen(string); i++) 
+    for (i = 0; i < strlen(string); i++)
         if ( string[i] == ':' )
             string[i] = ' ';
     return;
@@ -274,7 +274,7 @@ static int preparetitle(char *title) {
     if (cut != NULL) {
         log_event(CPDEBUG, "removing slashes from full title", title);
         memmove(title, cut+1, strlen(cut+1)+1);
-    }  
+    }
     cut=strrchr(title, '\\');
     if (cut != NULL) {
         log_event(CPDEBUG, "removing backslashes from full title", title);
@@ -342,23 +342,23 @@ static int write_pdf(FILE *fpsrc, char *outfile, struct passwd *passwd) {
         fwrite(pdfhead, sizeof(char), 4, fpdest);
         
         /* simply stream input to outfile */
-        while ((c = fgetc(fpsrc)) != EOF) 
+        while ((c = fgetc(fpsrc)) != EOF)
             fputc(c, fpdest);
     }
     
-    if (feof(fpsrc)) 
+    if (feof(fpsrc))
         clearerr(fpsrc);
-    else 
+    else
         log_event(CPERROR, "error in creating pdf from input stream", NULL);
     
     
     fclose(fpdest);
     fclose(fpsrc);
-    log_event(CPDEBUG, "all data written to outfile", outfile);    
+    log_event(CPDEBUG, "all data written to outfile", outfile);
 
-    if (!strcmp(passwd->pw_name, conf.anonuser)) 
+    if (!strcmp(passwd->pw_name, conf.anonuser))
         mode = (mode_t)(0666);
-    else 
+    else
         mode = (mode_t)(0600);
     if (chmod(outfile, mode))
         log_event(CPERROR, "failed to set file mode for PDF file (non fatal)", outfile);
@@ -370,7 +370,8 @@ static int write_pdf(FILE *fpsrc, char *outfile, struct passwd *passwd) {
 int main(int argc, char *argv[]) {
     char *user, *userdirname, *outfile, *cmdtitle;
     cp_string title="";
-    int size, job;
+    int job;
+    unsigned long size;
     struct passwd *passwd;
     
     
@@ -379,7 +380,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
     
-    if (init()) 
+    if (init())
         return 5;
     log_event(CPDEBUG, "initialization finished", VERSION);
     
@@ -399,11 +400,11 @@ int main(int argc, char *argv[]) {
     
     if (passwd == NULL && conf.lowercase) {
         log_event(CPDEBUG, "unknown user", user);
-        for (size=0;size<(int) strlen(argv[2]);size++) 
+        for (size=0;size<(int) strlen(argv[2]);size++)
             argv[2][size]=tolower(argv[2][size]);
         log_event(CPDEBUG, "trying lower case user name", argv[2]);
         passwd=getpwnam(user);
-    } 
+    }
                     
     if (passwd == NULL) {
         passwd=getpwnam(conf.anonuser);
@@ -415,9 +416,9 @@ int main(int argc, char *argv[]) {
         }
         log_event(CPDEBUG, "unknown user", user);
         userdirname = conf.anondirname;
-    } 
+    }
     else {
-        log_event(CPDEBUG, "user identified", passwd->pw_name);        
+        log_event(CPDEBUG, "user identified", passwd->pw_name);
         userdirname = user;
     }
     
@@ -430,8 +431,8 @@ int main(int argc, char *argv[]) {
     log_event(CPDEBUG, "user information prepared", NULL);
     
     
-/* create title of outputfile 
- * as this is a cups backend and it's appended after filtered pdf 
+/* create title of outputfile
+ * as this is a cups backend and it's appended after filtered pdf
  * by the PPD config *cupsFilter: application/vnd.cups-pdf
  * there's no filename, only cmdtitle is valid
  * Always use filename with a job id prefix.
@@ -440,7 +441,7 @@ int main(int argc, char *argv[]) {
     cmdtitle = argv[3];
     job = atoi(argv[1]);
     
-    if (!strcmp(cmdtitle, "(stdin)")) 
+    if (!strcmp(cmdtitle, "(stdin)"))
         cmdtitle="";
     
     if (!preparetitle(cmdtitle)) {
@@ -482,8 +483,8 @@ int main(int argc, char *argv[]) {
         fclose(logfp);
     }
         
-    log_event(CPDEBUG, "all memory has been freed", NULL);    
+    log_event(CPDEBUG, "all memory has been freed", NULL);
     log_event(CPSTATUS, "PDF creation successfully finished", passwd->pw_name);
     
     return 0;
-} 
+}

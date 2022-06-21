@@ -10,7 +10,7 @@ An OSX print to pdf-file printer driver
 
 ## Installation and Usage Instructions
 Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. Other users can create their own print destination by using the **PDFWriter Utility** app found in 
-    `   /Applications/Utilities/
+    `   /Applications/Utilities/   `
     
 After installation, your new printer will be ready for use.
 
@@ -29,13 +29,29 @@ If you want to uninstall **PDFwriter**, open Terminal.app, type
 and press Return. You will be asked for your admin password. After hitting Return, **PDFwriter** will be entirely removed from your system. 
 
 ## Compiling from sources
-In the event that you want to compile your own copy, you can clone this repository.  The product installer can then be compiled by executing the script
+In the event that you want to compile your own copy, you can clone this repository. 
 
-`   sources/buildscript.sh   `
+Use XCode to archive the **PDFWriter Utility** target. In XCode's organizer, choose to distribute the **PDFWriter Utility** with Developer ID, and export the Notarized app to the sources folder.
 
-If you have a DeveloperID, a signed product can be compiled by running 
+Use XCode to archive the **pdfwriter** target. In XCode's organizer, choose to distribute **pdfwriter** as Built Products and copy the binary into the sources folder.
 
-`   sources/buildscript.sh -s "<Your DeveloperID>"   `
+If anyone can contribute additions to the buildcript to automate the previous two steps, it would be appreciated.
+
+The signed and notarized product installer can then be compiled by executing the script
+
+`   sources/buildscript.sh -s "<Your DeveloperID>" -n "<Your Keychain Profile>"   `
+
+You can create a "Keychain Profile" by generating an app-specific password at https://appleid.apple.com then executing
+
+`   xcrun altool  --username "<Your AppleID>" --password "<Your app-specific password>" --list-providers  ` 
+
+to find your WWDRTeamID. 
+
+Then execute
+
+`   xcrun notarytool store-credentials "<Your Keychain Profile>" --apple-id "<Your AppleID>" --team-id "<Your WWDRTeamID>" --password "<Your app-specific password>”  `
+
+If you have built your own, delete any copies of **PDFWriter Utility** before running your installer, as otherwise, it will be installed over your existing copy and not in the Utilities folder.
 
 As this project is released under GNU GPL License Version 2, you are welcome to make modifications and improvement and incorporate it in your own software, provided you also release your software under the same licensing system. Read the [License](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/License) for full details.
 

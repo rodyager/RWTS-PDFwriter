@@ -12,6 +12,7 @@ lpadmin -x pdfwriter
 sudo rm /Library/Printers/RWTS/PDFwriter/*
 sudo rm /usr/libexec/cups/backend/pdfwriter
 sudo rm /Library/Printers/PPDs/Contents/Resources/RWTS\ PDFwriter.gz
+sudo rm -rf /Applications/Utilities/PDFWriter\ Utility.app
 
 
 sudo rmdir /Library/Printers/RWTS/PDFwriter
