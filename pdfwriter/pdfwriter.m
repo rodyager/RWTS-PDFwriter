@@ -1,6 +1,6 @@
 /* pdfwriter.m
  *
- * (c) 2016 Rodney I. Yager
+ * (c) 2016-2022 Rodney I. Yager
  *  GPL version 2 or later
  *
  *  Principal change from earlier versions in the addition of an icon to the user spool folder.
@@ -79,7 +79,6 @@
 
 #include "pdfwriter.h"
 
-//extern int errno;
 
 static FILE *logfp=NULL;
 
@@ -449,7 +448,7 @@ int main(int argc, char *argv[]) {
         log_event(CPDEBUG, "no title found - using default value", title);
     }
     else {
-//        snprintf(title, BUFSIZE, "job_%i %s", job, cmdtitle);
+        /* motwithstanding good advice above, we don't use a prefix, which means duplicates overwrite */
         snprintf(title, BUFSIZE, "%s", cmdtitle);
         log_event(CPDEBUG, "title successfully retrieved", title);
     }

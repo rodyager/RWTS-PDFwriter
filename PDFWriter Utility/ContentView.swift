@@ -12,6 +12,7 @@ struct ContentView: View {
     var body: some View {
         VStack{
         Spacer()
+        Image("Printer")
         Button("Create PDF Destination Folder") {
             let panel = NSSavePanel()
             panel.title = "Create PDFWriter Destination Folder"
@@ -27,7 +28,7 @@ struct ContentView: View {
         Button("Quit"){
             NSApp.terminate(self)
         }.padding()
-        }.frame(width:250, height:125 )
+        }.frame(width:250, height:270 )
             .onAppear{
                 NSApp.activate(ignoringOtherApps: true)}
     }

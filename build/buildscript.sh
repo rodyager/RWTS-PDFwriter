@@ -4,15 +4,15 @@
 # builds RWTS PDFwriter installer package
 #
 # Created by Rodney I. Yager on 27.05.16
-# Copyright 2016 Rodney I. Yager. All rights reserved
+# Copyright 2016-2022 Rodney I. Yager. All rights reserved
 
 if [ -z "$SDKROOT" ]; then
 	export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 fi
 PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
 UTILITIESDIR="pkgroot/Applications/Utilities"
-UTILITYAPP="PDFWriter Utility.app"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
+UTILITYAPP="PDFWriter Utility.app"
 PPDFILE="RWTS PDFwriter"
 
 while getopts "s:n:" opt; do
@@ -54,7 +54,7 @@ cp postinstall preinstall scripts/
 
 echo "#### building installer package"
 
-pkgbuild --root pkgroot --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 1.0 pdfwriter.pkg > /dev/null
+pkgbuild --root pkgroot --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 2.0 pdfwriter.pkg > /dev/null
 
 echo "#### building distribution file"
 productbuild --synthesize --product requirements  --package pdfwriter.pkg distribution.dist > /dev/null

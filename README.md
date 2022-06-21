@@ -1,5 +1,5 @@
 # RWTS PDFwriter
-&copy; 2016 Rodney I. Yager
+&copy; 2016-2022 Rodney I. Yager
 
 An OSX print to pdf-file printer driver
 
@@ -31,15 +31,15 @@ and press Return. You will be asked for your admin password. After hitting Retur
 ## Compiling from sources
 In the event that you want to compile your own copy, you can clone this repository. 
 
-Use XCode to archive the **PDFWriter Utility** target. In XCode's organizer, choose to distribute the **PDFWriter Utility** with Developer ID, and export the Notarized app to the sources folder.
+Use XCode to archive the **PDFWriter Utility** target. In XCode's organizer, choose to distribute the **PDFWriter Utility** with Developer ID, and export the Notarized app to the build folder.
 
-Use XCode to archive the **pdfwriter** target. In XCode's organizer, choose to distribute **pdfwriter** as Built Products and copy the binary into the sources folder.
+Use XCode to archive the **pdfwriter** target. In XCode's organizer, choose to distribute **pdfwriter** as Built Products and copy the binary into the build folder.
 
 If anyone can contribute additions to the buildcript to automate the previous two steps, it would be appreciated.
 
 The signed and notarized product installer can then be compiled by executing the script
 
-`   sources/buildscript.sh -s "<Your DeveloperID>" -n "<Your Keychain Profile>"   `
+`   build/buildscript.sh -s "<Your DeveloperID>" -n "<Your Keychain Profile>"   `
 
 You can create a "Keychain Profile" by generating an app-specific password at https://appleid.apple.com then executing
 
