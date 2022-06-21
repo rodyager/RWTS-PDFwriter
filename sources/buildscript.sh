@@ -83,6 +83,6 @@ if [ $SIGNSTRING  ]; then echo "#### signing product";
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"
-rm -r pkgroot resources scripts expanded *.pkg distribution.dist
+rm -r pkgroot resources scripts expanded *.pkg distribution.dist "$UTILITYAPP" pdfwriter
     
 exit 0
