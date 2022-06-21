@@ -3,26 +3,23 @@
 
 An OSX print to pdf-file printer driver
 
-### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.3/RWTS-PDFwriter.pkg)
-
- Click to download a [utility](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.0.3/PDFwriterUtility.app.zip) to choose the save destination for the PDFs.
-
+### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/sources/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v1.99/RWTS-PDFwriter.pkg)
 
 ## About RWTS PDFwriter
-**RWTS PDFwriter** in an OSX 10.11 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
+**RWTS PDFwriter** in an OSX 11.0 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
 
 ## Installation and Usage Instructions
-Download the installer package by clicking on the printer icon above and install as usual. After installation, your new printer will be ready for use.
+Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. Other users can create their own print destination by using the **PDFWriter Utility** app found in 
+    `   /Applications/Utilities/
+    
+After installation, your new printer will be ready for use.
 
 ### Usage
 
 Simply print your documents using **PDFwriter** as your printer. 
 
-The “printed” PDF files produced will be stored in the directory 
+The “printed” PDF files produced will be stored in the directory you created on installation.   `
 
-`   /Users/Shared/PDFwriter/<your user name>   `
-
-For convenient access to this folder, simply drag it to the right hand end of your dock.
 
 ## Removal instructions
 If you want to uninstall **PDFwriter**, open Terminal.app, type 
