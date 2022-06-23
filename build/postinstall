@@ -21,4 +21,4 @@ launchctl load /System/Library/LaunchDaemons/org.cups.cupsd.plist
 # install printer
 lpadmin -p PDFwriter -E -v pdfwriter:/ -P /Library/Printers/PPDs/Contents/Resources/RWTS\ PDFwriter.gz -o printer-is-shared=false
 
-su "$USER" -c "/Applications/Utilities/PDFWriter\ Utility.app/Contents/MacOS/PDFWriter\ Utility&"
+su "$USER" -c "/Library/Printers/RWTS/Utilities/PDFWriter\ Utility.app/Contents/MacOS/PDFWriter\ Utility&"

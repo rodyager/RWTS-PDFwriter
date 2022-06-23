@@ -11,3 +11,10 @@ then
 	/Library/Printers/Lisanet/PDFwriter/uninstall.sh
 fi
 
+if [ -e Applications/Utilities/PDFWriter\ Utility.app ]
+then 
+	# remove initial Version 2 Utility if it is there
+	rm -rf /Applications/Utilities/PDFWriter\ Utility.app
+fi
+
+

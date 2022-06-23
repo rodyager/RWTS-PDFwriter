@@ -448,8 +448,17 @@ int main(int argc, char *argv[]) {
         log_event(CPDEBUG, "no title found - using default value", title);
     }
     else {
-        /* motwithstanding good advice above, we don't use a prefix, which means duplicates overwrite */
-        snprintf(title, BUFSIZE, "%s", cmdtitle);
+        /* create a unique title for the file*/
+        NSString * proposedTitleWithoutExtension = [NSString stringWithCString: cmdtitle encoding: NSString.defaultCStringEncoding];
+        NSString * proposedTitle = [proposedTitleWithoutExtension stringByAppendingPathExtension:@"pdf"];
+        NSString * outDirectory = [NSString stringWithCString: conf.outdir encoding: NSString.defaultCStringEncoding];
+        outDirectory = [outDirectory stringByAppendingPathComponent: [NSString stringWithCString: userdirname encoding: NSString.defaultCStringEncoding] ];
+        int fileIndex = 1;
+        while ([NSFileManager.defaultManager fileExistsAtPath: [outDirectory stringByAppendingPathComponent:proposedTitle]]){
+            proposedTitle = [NSString stringWithFormat: @"%@-%d.pdf",proposedTitleWithoutExtension, fileIndex];
+            fileIndex++;
+        }
+        snprintf(title, BUFSIZE, "%s", [proposedTitle.stringByDeletingPathExtension cStringUsingEncoding:NSString.defaultCStringEncoding]);
         log_event(CPDEBUG, "title successfully retrieved", title);
     }
 

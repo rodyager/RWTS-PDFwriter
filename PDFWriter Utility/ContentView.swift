@@ -24,11 +24,14 @@ struct ContentView: View {
                 let theData = try! theOrigURL.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
                 try! URL.writeBookmarkData(theData, to:panel.url!)
                     }
-        }.padding()
-        Button("Quit"){
-            NSApp.terminate(self)
-        }.padding()
-        }.frame(width:250, height:270 )
+        }
+            Button("Reveal Uninstall script"){
+                let task = Process()
+                task.launchPath = "/usr/bin/open"
+                task.arguments = ["/Library/Printers/RWTS/PDFwriter/"]
+                task.launch()
+            }.padding()
+        }.frame(width:250, height:230 )
             .onAppear{
                 NSApp.activate(ignoringOtherApps: true)}
     }

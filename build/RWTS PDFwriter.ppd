@@ -35,6 +35,7 @@
 *APPrinterIconPath: "/Library/Printers/RWTS/PDFwriter/PDFwriter.icns"
 *1284DeviceID:  "MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;"
 *cupsFilter:    "application/vnd.cups-pdf 0 -"
+*APPrinterUtilityPath: "/Library/Printers/RWTS/Utilities/PDFWriter Utility.app"
 *PSVersion:	"(3016.102) 1"
 *LanguageLevel:	"3"
 *ColorDevice:	True

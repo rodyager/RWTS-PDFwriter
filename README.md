@@ -3,14 +3,15 @@
 
 An OSX print to pdf-file printer driver
 
-### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2/RWTS-PDFwriter.pkg)
+### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2.0/RWTS-PDFwriter.pkg)
 
 ## About RWTS PDFwriter
 **RWTS PDFwriter** in an OSX 11.0 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
 
 ## Installation and Usage Instructions
-Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. Other users can create their own print destination by using the **PDFWriter Utility** app found in 
-    `   /Applications/Utilities/   `
+Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. 
+
+Other users can access this utility to create their own print destination from the ` Options & Supplies ` button for the printer in ` System Preferences > Printers & Scanners  `
     
 After installation, your new printer will be ready for use.
 
@@ -22,11 +23,7 @@ The “printed” PDF files produced will be stored in the directory you created
 
 
 ## Removal instructions
-If you want to uninstall **PDFwriter**, open Terminal.app, type 
-
-`   /Library/Printers/RWTS/PDFwriter/uninstall.sh   `
-
-and press Return. You will be asked for your admin password. After hitting Return, **PDFwriter** will be entirely removed from your system. 
+If you want to uninstall **PDFwriter**, open the **PDFWriter Utility** (see above)and click the button to reveal the ` uninstall ` script. When you open this script, you will be asked for your administrative password, after which  **RWTS PDFwriter** will be completely removed from your system.
 
 ## Compiling from sources
 In the event that you want to compile your own copy, you can clone this repository. 

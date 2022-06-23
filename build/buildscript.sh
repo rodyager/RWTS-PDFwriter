@@ -10,7 +10,7 @@ if [ -z "$SDKROOT" ]; then
 	export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 fi
 PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
-UTILITIESDIR="pkgroot/Applications/Utilities"
+UTILITIESDIR="pkgroot/Library/Printers/RWTS/Utilities"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
 UTILITYAPP="PDFWriter Utility.app"
 PPDFILE="RWTS PDFwriter"
@@ -35,17 +35,17 @@ echo "#### making directory structure"
 mkdir pkgroot resources scripts
 mkdir -m 775 pkgroot/Library pkgroot/Library/Printers pkgroot/Library/Printers/RWTS
 mkdir -m 755 $PDFWRITERDIR pkgroot/Library/Printers/PPDs pkgroot/Library/Printers/PPDs/Contents $PPDDIR
-mkdir -m 775 pkgroot/Applications $UTILITIESDIR
+mkdir -m 775 $UTILITIESDIR
 
 echo "#### populating directory structure"
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
 cp pdfwriter  $PDFWRITERDIR/
 cp -r "$UTILITYAPP" $UTILITIESDIR/
-cp uninstall.sh PDFfolder.png $PDFWRITERDIR/
+cp uninstall PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 
 chmod 700 $PDFWRITERDIR/pdfwriter
-chmod 755 $PDFWRITERDIR/uninstall.sh    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
+chmod 755 $PDFWRITERDIR/uninstall    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
 chmod 644 $PPDDIR/"$PPDFILE".gz
 
 cp PDFWriter.iconset/icon_256x256.png resources/background.png
