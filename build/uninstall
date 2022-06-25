@@ -5,12 +5,30 @@
 #
 # Created by Simone Karin Lehmann on 30.08.10.
 # Copyright 2010 Simone Karin Lehmann. All rights reserved.
-# Modified 2016 Rodney I. Yager
+# Modified 2016 -2022 Rodney I. Yager
 
-lpadmin -x pdfwriter
+echo "
+
+
+    ******************************
+    * RWTS-PDFWriter Uninstaller *
+    ******************************
+           
+    Your admin password is required to complete the removal.
+    
+    Quit Terminal to abort
+
+"
 
 sudo rm -rf /Library/Printers/RWTS
 sudo rm /usr/libexec/cups/backend/pdfwriter
 sudo rm /Library/Printers/PPDs/Contents/Resources/RWTS\ PDFwriter.gz
+lpadmin -x pdfwriter
 
-sudo pkgutil --forget au.rwts.pdfwriter 
+sudo pkgutil --forget au.rwts.pdfwriter
+
+echo "
+
+    Removal completed
+    
+"
