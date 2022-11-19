@@ -9,6 +9,7 @@
         <key>arch</key>
         <array>
             <string>x86_64</string>
+            <string>arm64</string>
         </array>
     </dict>
 </plist>
