@@ -11,8 +11,8 @@
 ln -sf /Library/Printers/RWTS/PDFwriter/pdfwriter /usr/libexec/cups/backend/pdfwriter
 
 # restrict running uninstall.sh to admin users only
-chgrp admin /Library/Printers/RWTS/PDFwriter/uninstall.sh
-chmod 750 /Library/Printers/RWTS/PDFwriter/uninstall.sh
+chgrp admin /Library/Printers/RWTS/PDFwriter/uninstall
+chmod 750 /Library/Printers/RWTS/PDFwriter/uninstall
 
 # restart cupsd
 launchctl unload /System/Library/LaunchDaemons/org.cups.cupsd.plist
