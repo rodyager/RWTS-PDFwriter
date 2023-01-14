@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var filename = "Filename"
     var body: some View {
         VStack{
         Spacer()
