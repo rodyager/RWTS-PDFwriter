@@ -21,8 +21,7 @@ struct ContentView: View {
             panel.showsTagField = false
             if panel.runModal() == .OK {
                 let theOrigURL = NSURL.fileURL(withPath: "/private/var/spool/pdfwriter/\(NSUserName())")
-                let theData = try! theOrigURL.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
-                try! URL.writeBookmarkData(theData, to:panel.url!)
+                try! FileManager().createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
                     }
         }
             Button("Reveal Uninstall script"){
