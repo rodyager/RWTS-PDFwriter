@@ -1,15 +1,17 @@
 # RWTS PDFwriter
-&copy; 2016-2022 Rodney I. Yager
+&copy; 2016-2023 Rodney I. Yager
 
 An OSX print to pdf-file printer driver
 
-### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2.0/RWTS-PDFwriter.pkg)
+### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2.0.1/RWTS-PDFwriter.pkg)
 
 ## About RWTS PDFwriter
-**RWTS PDFwriter** in an OSX 11.0 compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows.
+**RWTS PDFwriter** is an OSX 11.0+ compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows. 
+
+The provided installer installs a universal binary compatible with both Intel and Apple Silicon processors. 
 
 ## Installation and Usage Instructions
-Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. 
+Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. (You need to Quit the Utility after creating the destination folder to complete the installation.)
 
 Other users can access this utility to create their own print destination from the ` Options & Supplies ` button for the printer in ` System Preferences > Printers & Scanners  `
     
