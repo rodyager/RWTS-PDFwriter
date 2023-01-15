@@ -23,4 +23,6 @@ lpadmin -p PDFwriter -E -v pdfwriter:/ -P /Library/Printers/PPDs/Contents/Resour
 
 # open the Utility with correct environment
 uid=$(id -u "$USER")
-launchctl asuser $uid su "$USER" -c "/Library/Printers/RWTS/Utilities/PDFWriter\ Utility.app/Contents/MacOS/PDFWriter\ Utility"
+if [ $uid -ne 0 ]; then
+    launchctl asuser $uid su "$USER" -c "/Library/Printers/RWTS/Utilities/PDFWriter\ Utility.app/Contents/MacOS/PDFWriter\ Utility"
+fi
