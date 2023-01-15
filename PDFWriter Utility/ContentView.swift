@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showAlert = false
     var body: some View {
         VStack{
         Spacer()
@@ -20,8 +21,18 @@ struct ContentView: View {
             panel.showsTagField = false
             if panel.runModal() == .OK {
                 let theOrigURL = NSURL.fileURL(withPath: "/private/var/spool/pdfwriter/\(NSUserName())")
-                try! FileManager().createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
+                do {
+                    try FileManager().createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
+                }
+                catch{
+                    showAlert = true
+                }
                     }
+        }.alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Save could not be completed"),
+                message: Text("Note that replacing an existing location is not supported.")
+            )
         }
             Button("Reveal Uninstall script"){
                 let task = Process()
