@@ -41,21 +41,9 @@ xcodebuild -alltargets archive
 
 cd build
 
-echo "### copying binaries from tempory build folder"
-cp -r  "Release/$UTILITYAPP"  ./
-cp -r "Release/pdfwriter" ./
-
-if [ ! -z "$SIGNSTRING"  ]; then echo "#### notarizing Utility";
-    ditto -c -k --keepParent "$UTILITYAPP" "$UTILITYZIP";
-    xcrun notarytool submit "$UTILITYZIP" --keychain-profile "$NOTARYSTRING" --wait;
-    xcrun stapler staple "$UTILITYAPP";
-    rm "$UTILITYZIP";
-    echo "#### notarizing Driver";
-    # you can't actually staple an executable, but gatekeeper can check from Apple's servers
-    ditto -c -k --keepParent pdfwriter pdfwriter.zip;
-    xcrun notarytool submit pdfwriter.zip --keychain-profile "$NOTARYSTRING" --wait;
-    rm pdfwriter.zip;
-fi
+echo "### move binaries from tempory build folder"
+mv "/tmp/PDFWriter.dst/Applications/$UTILITYAPP" "$UTILITYAPP"
+mv "/tmp/PDFWriter.dst/pdfwriter" pdfwriter
 
 echo "### clean up build artefacts"
 
