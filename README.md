@@ -3,7 +3,7 @@
 
 An OSX print to pdf-file printer driver
 
-### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2.0.3/RWTS-PDFwriter.pkg)
+### [![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/PDFwriter.iconset/icon_256x256.png "Click to download installer pkg") Click to download the installer pkg](https://github.com/rodyager/RWTS-PDFwriter/releases/download/v2.0.4/RWTS-PDFwriter.pkg)
 
 ## About RWTS PDFwriter
 **RWTS PDFwriter** is an OSX 11.0+ compatible print driver that enables you to “print” your documents directly to a pdf file. It has similar functionality to [CutePDF](http://www.cutepdf.com) on Windows. 
@@ -30,15 +30,11 @@ If you want to uninstall **PDFwriter**, open the **PDFWriter Utility** (see abov
 ## Compiling from sources
 In the event that you want to compile your own copy, you can clone this repository. 
 
-Use XCode to archive the **PDFWriter Utility** target. In XCode's organizer, choose to distribute the **PDFWriter Utility** with Developer ID, and export the Notarized app to the build folder.
-
-Use XCode to archive the **pdfwriter** target. In XCode's organizer, choose to distribute **pdfwriter** as Built Products and copy the binary into the build folder.
-
-If anyone can contribute additions to the buildcript to automate the previous two steps, it would be appreciated.
-
-The signed and notarized product installer can then be compiled by executing the script
+A signed and notarized product installer can be compiled by executing the script
 
 `   build/buildscript.sh -s "<Your DeveloperID>" -n "<Your Keychain Profile>"   `
+
+Omit the -n if you do not wish to notarize the components, and omit the -s if you do not want to sign the components.
 
 You can create a "Keychain Profile" by generating an app-specific password at https://appleid.apple.com then executing
 

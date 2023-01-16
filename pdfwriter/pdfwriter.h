@@ -28,7 +28,7 @@
 
 
 
-#define VERSION "2.0.3"
+#define VERSION "2.0.4"
 
 #define CPERROR         1
 #define CPSTATUS        2
