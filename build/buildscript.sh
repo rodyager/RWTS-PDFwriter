@@ -63,12 +63,15 @@ cp uninstall PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 
 chmod 700 $PDFWRITERDIR/pdfwriter
-chmod 755 $PDFWRITERDIR/uninstall    # will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
+chmod 755 $PDFWRITERDIR/uninstall  postinstall preinstall   # uninstall will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
+
 chmod 644 $PPDDIR/"$PPDFILE".gz
 
 cp PDFWriter.iconset/icon_256x256.png resources/background.png
 cp ../License resources/
 cp postinstall preinstall scripts/
+
+
 
 echo "#### building installer package"
 
