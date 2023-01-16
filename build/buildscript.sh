@@ -13,6 +13,7 @@ PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
 UTILITIESDIR="pkgroot/Library/Printers/RWTS/Utilities"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
 UTILITYAPP="PDFWriter Utility.app"
+UTILITYZIP="PDFWriter Utility.zip"
 PPDFILE="RWTS PDFwriter"
 
 while getopts "s:n:" opt; do
@@ -30,7 +31,31 @@ while getopts "s:n:" opt; do
 	esac
 done
 
+
+
 cd "$(dirname "$0")"
+
+cd ../
+echo "### building Utility and printer driver"
+xcodebuild -alltargets archive
+
+cd build
+
+echo "### copying binaries from tempory build folder"
+cp -r  "Release/$UTILITYAPP"  ./
+cp -r "Release/pdfwriter" ./
+
+if [ ! -z "$SIGNSTRING"  ]; then echo "#### notarizing Utility";
+    ditto -c -k --keepParent "$UTILITYAPP" "$UTILITYZIP";
+    xcrun notarytool submit "$UTILITYZIP" --keychain-profile "$NOTARYSTRING" --wait;
+    xcrun stapler staple "$UTILITYAPP;"
+    rm "$UTILITYZIP";
+fi
+
+echo "### clean up build artefacts"
+
+rm -r EagerLinkingTBDs  PDFWriter.build Release XCBuildData
+
 echo "#### making directory structure"
 mkdir pkgroot resources scripts
 mkdir -m 775 pkgroot/Library pkgroot/Library/Printers pkgroot/Library/Printers/RWTS
@@ -74,10 +99,10 @@ pkgutil --expand product.pkg expanded
 cp -r README.rtfd expanded/Resources/
 pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
-if [ $SIGNSTRING  ]; then echo "#### signing product";
-    productsign --sign $SIGNSTRING RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null;
-    if [ $NOTARYSTRING  ]; then echo "#### notarizing product";
-        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile $NOTARYSTRING --wait;
+if [ ! -z "$SIGNSTRING"  ]; then echo "#### signing product";
+    productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null;
+    if [ ! -z "$NOTARYSTRING" ]; then echo "#### notarizing product";
+        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --wait;
         xcrun stapler staple ../RWTS-PDFwriter.pkg;
     fi
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
