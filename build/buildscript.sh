@@ -7,7 +7,7 @@
 # Copyright 2016-2022 Rodney I. Yager. All rights reserved
 
 if [ -z "$SDKROOT" ]; then
-	export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+    export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 fi
 PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
 UTILITIESDIR="pkgroot/Library/Printers/RWTS/Utilities"
@@ -17,18 +17,18 @@ UTILITYZIP="PDFWriter Utility.zip"
 PPDFILE="RWTS PDFwriter"
 
 while getopts "s:n:" opt; do
-	case ${opt} in
-	   s)
-		SIGNSTRING=${OPTARG}
-		;;
+    case ${opt} in
+       s)
+        SIGNSTRING=${OPTARG}
+        ;;
        n)
         NOTARYSTRING=${OPTARG}
         ;;
-	   *)  
-		echo "usage: buildscript [-s \"<your signing identity>\"] [-n \"<your keychain profile>\"]"
-		exit 0
-		;;
-	esac
+       *)
+        echo "usage: buildscript [-s \"<your signing identity>\"] [-n \"<your keychain profile>\"]"
+        exit 0
+        ;;
+    esac
 done
 
 
@@ -101,6 +101,7 @@ pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
 if [ ! -z "$SIGNSTRING"  ]; then echo "#### signing product";
     productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null;
+
     if [ ! -z "$NOTARYSTRING" ]; then echo "#### notarizing product";
         xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --wait;
         xcrun stapler staple ../RWTS-PDFwriter.pkg;
@@ -109,5 +110,5 @@ else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"
 rm -r pkgroot resources scripts expanded *.pkg distribution.dist "$UTILITYAPP" pdfwriter
-    
+
 exit 0
