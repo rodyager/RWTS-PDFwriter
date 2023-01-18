@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# postinstall.sh
+# postinstall
 # pdfwriter
 #
-# Created by Simone Karin Lehmann on 30.08.10.
-# Copyright 2010 Simone Karin Lehmann. All rights reserved.
-# Modified 2016 Rodney I. Yager
+# Copyright 2023 Rodney I. Yager
 
 # make symlink
 ln -sf /Library/Printers/RWTS/PDFwriter/pdfwriter /usr/libexec/cups/backend/pdfwriter
@@ -27,6 +25,4 @@ lpadmin -p PDFwriter -E -v pdfwriter:/ -P /Library/Printers/PPDs/Contents/Resour
 
 # open the Utility with correct environment
 uid=$(id -u "$USER")
-launchctl asuser $uid sudo -u "$USER" open -b au.rwts.PDFWriter-Utility
-
-
+launchctl asuser $uid sudo -u "$USER" open "/Library/Printers/RWTS/Utilities/PDFWriter Utility.app"

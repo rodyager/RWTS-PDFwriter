@@ -11,11 +11,11 @@
 		5506A7AF285F18BF00C5BDF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5506A7AE285F18BF00C5BDF5 /* ContentView.swift */; };
 		5506A7B1285F18C100C5BDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5506A7B0285F18C100C5BDF5 /* Assets.xcassets */; };
 		5506A7B4285F18C100C5BDF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5506A7B3285F18C100C5BDF5 /* Preview Assets.xcassets */; };
-		5506A7D9285FE2BC00C5BDF5 /* pdfwriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5506A7D8285FE2BC00C5BDF5 /* pdfwriter.m */; };
+		55BA6F72297812A40090F158 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA6F71297812A40090F158 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5506A7D4285FE2BC00C5BDF5 /* CopyFiles */ = {
+		55BA6F6D297812A30090F158 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -33,9 +33,8 @@
 		5506A7B0285F18C100C5BDF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5506A7B3285F18C100C5BDF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5506A7B5285F18C100C5BDF5 /* PDFWriter_Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PDFWriter_Utility.entitlements; sourceTree = "<group>"; };
-		5506A7D6285FE2BC00C5BDF5 /* pdfwriter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pdfwriter; sourceTree = BUILT_PRODUCTS_DIR; };
-		5506A7D8285FE2BC00C5BDF5 /* pdfwriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pdfwriter.m; sourceTree = "<group>"; };
-		5506A7DD285FE2E700C5BDF5 /* pdfwriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pdfwriter.h; sourceTree = "<group>"; };
+		55BA6F6F297812A30090F158 /* pdfwriter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pdfwriter; sourceTree = BUILT_PRODUCTS_DIR; };
+		55BA6F71297812A40090F158 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +45,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5506A7D3285FE2BC00C5BDF5 /* Frameworks */ = {
+		55BA6F6C297812A30090F158 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				5506A7AB285F18BF00C5BDF5 /* PDFWriter Utility */,
-				5506A7D7285FE2BC00C5BDF5 /* pdfwriter */,
+				55BA6F70297812A40090F158 /* pdfwriter */,
 				5506A7AA285F18BF00C5BDF5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				5506A7A9285F18BF00C5BDF5 /* PDFWriter Utility.app */,
-				5506A7D6285FE2BC00C5BDF5 /* pdfwriter */,
+				55BA6F6F297812A30090F158 /* pdfwriter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,11 +93,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		5506A7D7285FE2BC00C5BDF5 /* pdfwriter */ = {
+		55BA6F70297812A40090F158 /* pdfwriter */ = {
 			isa = PBXGroup;
 			children = (
-				5506A7D8285FE2BC00C5BDF5 /* pdfwriter.m */,
-				5506A7DD285FE2E700C5BDF5 /* pdfwriter.h */,
+				55BA6F71297812A40090F158 /* main.swift */,
 			);
 			path = pdfwriter;
 			sourceTree = "<group>";
@@ -123,13 +121,13 @@
 			productReference = 5506A7A9285F18BF00C5BDF5 /* PDFWriter Utility.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5506A7D5285FE2BC00C5BDF5 /* pdfwriter */ = {
+		55BA6F6E297812A30090F158 /* pdfwriter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5506A7DA285FE2BC00C5BDF5 /* Build configuration list for PBXNativeTarget "pdfwriter" */;
+			buildConfigurationList = 55BA6F75297812A40090F158 /* Build configuration list for PBXNativeTarget "pdfwriter" */;
 			buildPhases = (
-				5506A7D2285FE2BC00C5BDF5 /* Sources */,
-				5506A7D3285FE2BC00C5BDF5 /* Frameworks */,
-				5506A7D4285FE2BC00C5BDF5 /* CopyFiles */,
+				55BA6F6B297812A30090F158 /* Sources */,
+				55BA6F6C297812A30090F158 /* Frameworks */,
+				55BA6F6D297812A30090F158 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -137,7 +135,7 @@
 			);
 			name = pdfwriter;
 			productName = pdfwriter;
-			productReference = 5506A7D6285FE2BC00C5BDF5 /* pdfwriter */;
+			productReference = 55BA6F6F297812A30090F158 /* pdfwriter */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -147,14 +145,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					5506A7A8285F18BF00C5BDF5 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
-					5506A7D5285FE2BC00C5BDF5 = {
-						CreatedOnToolsVersion = 13.4.1;
+					55BA6F6E297812A30090F158 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -172,7 +170,7 @@
 			projectRoot = "";
 			targets = (
 				5506A7A8285F18BF00C5BDF5 /* PDFWriter Utility */,
-				5506A7D5285FE2BC00C5BDF5 /* pdfwriter */,
+				55BA6F6E297812A30090F158 /* pdfwriter */,
 			);
 		};
 /* End PBXProject section */
@@ -199,11 +197,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5506A7D2285FE2BC00C5BDF5 /* Sources */ = {
+		55BA6F6B297812A30090F158 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5506A7D9285FE2BC00C5BDF5 /* pdfwriter.m in Sources */,
+				55BA6F72297812A40090F158 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,12 +343,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "au.rwts.PDFWriter-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -379,12 +378,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "au.rwts.PDFWriter-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -394,31 +394,26 @@
 			};
 			name = Release;
 		};
-		5506A7DB285FE2BC00C5BDF5 /* Debug */ = {
+		55BA6F73297812A40090F158 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = H2LX99GBPZ;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H2LX99GBPZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = au.rwts.PDFWriter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		5506A7DC285FE2BC00C5BDF5 /* Release */ = {
+		55BA6F74297812A40090F158 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = H2LX99GBPZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -427,6 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = au.rwts.PDFWriter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -451,11 +447,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5506A7DA285FE2BC00C5BDF5 /* Build configuration list for PBXNativeTarget "pdfwriter" */ = {
+		55BA6F75297812A40090F158 /* Build configuration list for PBXNativeTarget "pdfwriter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5506A7DB285FE2BC00C5BDF5 /* Debug */,
-				5506A7DC285FE2BC00C5BDF5 /* Release */,
+				55BA6F73297812A40090F158 /* Debug */,
+				55BA6F74297812A40090F158 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

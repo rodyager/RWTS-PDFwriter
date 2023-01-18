@@ -4,7 +4,7 @@
 # builds RWTS PDFwriter installer package
 #
 # Created by Rodney I. Yager on 27.05.16
-# Copyright 2016-2022 Rodney I. Yager. All rights reserved
+# Copyright 2016-2023 Rodney I. Yager. All rights reserved
 
 if [ -z "$SDKROOT" ]; then
     export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
@@ -31,8 +31,6 @@ while getopts "s:n:" opt; do
     esac
 done
 
-
-
 cd "$(dirname "$0")"
 
 cd ../
@@ -42,7 +40,7 @@ xcodebuild -alltargets archive
 cd build
 
 echo "### move binaries from tempory build folder"
-mv "/tmp/PDFWriter.dst/Applications/$UTILITYAPP" "$UTILITYAPP"
+mv "/tmp/PDFWriter.dst/$UTILITYAPP" "$UTILITYAPP"
 mv "/tmp/PDFWriter.dst/pdfwriter" pdfwriter
 
 echo "### clean up build artefacts"
@@ -71,11 +69,9 @@ cp PDFWriter.iconset/icon_256x256.png resources/background.png
 cp ../License resources/
 cp postinstall preinstall scripts/
 
-
-
 echo "#### building installer package"
 
-pkgbuild --root pkgroot --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 2.0.5 pdfwriter.pkg > /dev/null
+pkgbuild --root pkgroot --component-plist component --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 3.0 pdfwriter.pkg > /dev/null
 
 echo "#### building distribution file"
 productbuild --synthesize --product requirements  --package pdfwriter.pkg distribution.dist > /dev/null
