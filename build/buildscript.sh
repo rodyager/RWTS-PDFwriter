@@ -13,8 +13,9 @@ PDFWRITERDIR="pkgroot/Library/Printers/RWTS/PDFwriter"
 UTILITIESDIR="pkgroot/Library/Printers/RWTS/Utilities"
 PPDDIR="pkgroot/Library/Printers/PPDs/Contents/Resources"
 UTILITYAPP="PDFWriter Utility.app"
-UTILITYZIP="PDFWriter Utility.zip"
+PDFWRITER="pdfwriter"
 PPDFILE="RWTS PDFwriter"
+BUILDTEMP="/tmp/PDFWriter.dst"
 
 while getopts "s:n:" opt; do
     case ${opt} in
@@ -40,8 +41,8 @@ xcodebuild -alltargets archive
 cd build
 
 echo "### move binaries from tempory build folder"
-mv "/tmp/PDFWriter.dst/$UTILITYAPP" "$UTILITYAPP"
-mv "/tmp/PDFWriter.dst/pdfwriter" pdfwriter
+mv "$BUILDTEMP/$UTILITYAPP" "$UTILITYAPP"
+mv "$BUILDTEMP/$PDFWRITER" $PDFWRITER
 
 echo "### clean up build artefacts"
 
@@ -55,12 +56,12 @@ mkdir -m 775 $UTILITIESDIR
 
 echo "#### populating directory structure"
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
-cp pdfwriter  $PDFWRITERDIR/
+cp $PDFWRITER  $PDFWRITERDIR/
 cp -r "$UTILITYAPP" $UTILITIESDIR/
 cp uninstall PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 
-chmod 700 $PDFWRITERDIR/pdfwriter
+chmod 700 $PDFWRITERDIR/$PDFWRITER
 chmod 755 $PDFWRITERDIR/uninstall  postinstall preinstall   # uninstall will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
 
 chmod 644 $PPDDIR/"$PPDFILE".gz
@@ -101,6 +102,6 @@ if [ ! -z "$SIGNSTRING"  ]; then echo "#### signing product";
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"
-rm -r pkgroot resources scripts expanded *.pkg distribution.dist "$UTILITYAPP" pdfwriter
+rm -r pkgroot resources scripts expanded *.pkg distribution.dist "$UTILITYAPP" $PDFWRITER
 
 exit 0

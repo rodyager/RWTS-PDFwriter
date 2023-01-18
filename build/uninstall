@@ -1,11 +1,9 @@
 #!/bin/sh
 
-# uninstall.sh
+# uninstall
 # unistall RWTS PDFwriter
 #
-# Created by Simone Karin Lehmann on 30.08.10.
-# Copyright 2010 Simone Karin Lehmann. All rights reserved.
-# Modified 2016 -2022 Rodney I. Yager
+# Copyright 2023 Rodney I. Yager
 
 echo "
 

@@ -33,6 +33,16 @@
 		5506A7B0285F18C100C5BDF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5506A7B3285F18C100C5BDF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5506A7B5285F18C100C5BDF5 /* PDFWriter_Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PDFWriter_Utility.entitlements; sourceTree = "<group>"; };
+		5557B91A2978AD6F00199134 /* buildscript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buildscript.sh; sourceTree = "<group>"; };
+		5557B91B2978AD6F00199134 /* postinstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinstall; sourceTree = "<group>"; };
+		5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RWTS PDFwriter.ppd"; sourceTree = "<group>"; };
+		5557B91D2978AD6F00199134 /* README.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = README.rtfd; sourceTree = "<group>"; };
+		5557B91E2978AD6F00199134 /* component */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = component; sourceTree = "<group>"; };
+		5557B91F2978AD6F00199134 /* requirements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = requirements; sourceTree = "<group>"; };
+		5557B9202978AD6F00199134 /* uninstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = uninstall; sourceTree = "<group>"; };
+		5557B9212978AD6F00199134 /* preinstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = preinstall; sourceTree = "<group>"; };
+		5557B9222978AD6F00199134 /* PDFwriter.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = PDFwriter.iconset; sourceTree = "<group>"; };
+		5557B9232978AD6F00199134 /* PDFfolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PDFfolder.png; sourceTree = "<group>"; };
 		55BA6F6F297812A30090F158 /* pdfwriter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pdfwriter; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BA6F71297812A40090F158 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,8 +68,9 @@
 		5506A7A0285F18BF00C5BDF5 = {
 			isa = PBXGroup;
 			children = (
-				5506A7AB285F18BF00C5BDF5 /* PDFWriter Utility */,
 				55BA6F70297812A40090F158 /* pdfwriter */,
+				5506A7AB285F18BF00C5BDF5 /* PDFWriter Utility */,
+				5557B9192978AD6F00199134 /* build */,
 				5506A7AA285F18BF00C5BDF5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +102,23 @@
 				5506A7B3285F18C100C5BDF5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5557B9192978AD6F00199134 /* build */ = {
+			isa = PBXGroup;
+			children = (
+				5557B91A2978AD6F00199134 /* buildscript.sh */,
+				5557B91B2978AD6F00199134 /* postinstall */,
+				5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */,
+				5557B91D2978AD6F00199134 /* README.rtfd */,
+				5557B91E2978AD6F00199134 /* component */,
+				5557B91F2978AD6F00199134 /* requirements */,
+				5557B9202978AD6F00199134 /* uninstall */,
+				5557B9212978AD6F00199134 /* preinstall */,
+				5557B9222978AD6F00199134 /* PDFwriter.iconset */,
+				5557B9232978AD6F00199134 /* PDFfolder.png */,
+			);
+			path = build;
 			sourceTree = "<group>";
 		};
 		55BA6F70297812A40090F158 /* pdfwriter */ = {

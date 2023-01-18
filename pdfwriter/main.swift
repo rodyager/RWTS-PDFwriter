@@ -9,30 +9,24 @@ import AppKit
 import Darwin
 
 var outDir = "/var/spool/pdfwriter/"
+var nobodyName = "anonaymous users"
+var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
 
 if ( setuid(0) != 0 ) {
     fputs("pdfwriter cannot be called without root privileges!\n", stderr)
     exit(0)
 }
 
-let group = getgrnam("_lp").pointee
-
-setgid(group.gr_gid)
-
-var isDir: ObjCBool = true
-
-if ( CommandLine.argc == 1) {
-    fputs("file pdfwriter:/ \"Virtual PDF Printer\" \"PDFwriter\" \"MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;\"\n", stderr)
+switch CommandLine.argc {
+case 1: fputs("file pdfwriter:/ \"Virtual PDF Printer\" \"PDFwriter\" \"MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;\"\n", stderr)
     exit(0)
-}
-
-if (CommandLine.argc != 6 ) {
-    fputs("Usage: pdfwriter job-id user title copies options [file]\n", stderr)
+case 6: break
+default: fputs("Usage: pdfwriter job-id user title copies options [file]\n", stderr)
     exit(0)
 }
 
 // check that it is actually a PDF file
-let stdIn: FileHandle =  .standardInput
+let stdIn: FileHandle = .standardInput
 let prefix:Data
 do {
     prefix = try stdIn.read(upToCount: 4)!
@@ -53,10 +47,14 @@ if let p = getpwnam(user)?.pointee {
     passwd = p
 } else {
     passwd = getpwnam("nobody")!.pointee
-    user = "anonymous users"
+    user = nobodyName
 }
 
 outDir += user
+
+let group = getgrnam("_lp").pointee
+setgid(group.gr_gid)
+var isDir: ObjCBool = true
 
 if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
     // create output Directory, setting icon, ownership and permissions.
@@ -68,8 +66,8 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
         fputs("Unable to create output directory at \(outDir)\n", stderr)
         exit(0)
     }
-    NSWorkspace.shared.setIcon(NSImage(byReferencingFile: "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"), forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
-    let mode = user == "anonymous users" ? mode_t(0o777) : mode_t(0o700)
+    NSWorkspace.shared.setIcon(NSImage(byReferencingFile: folderIconPath), forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
+    let mode = user == nobodyName ? mode_t(0o777) : mode_t(0o700)
     chmod(outDir, mode)
     chown(outDir, passwd.pw_uid, passwd.pw_gid)
 }
@@ -91,10 +89,10 @@ while ( FileManager.default.fileExists( atPath: outFile )) {
 }
 
 umask(0o077)
-// create output file and set appropriate
+// create output file and set appropriate ownership and permissions
 FileManager.default.createFile(atPath: outFile, contents: nil )
 chown(outFile, passwd.pw_uid, passwd.pw_gid)
-let mode = user == "anonymous users" ? mode_t(0o666) : mode_t(0o600)
+let mode = user == nobodyName ? mode_t(0o666) : mode_t(0o600)
 
 chmod(outFile, mode)
 
