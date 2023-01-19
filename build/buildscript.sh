@@ -2,6 +2,7 @@
 
 # buildscript.sh
 # builds RWTS PDFwriter installer package
+# pdfwriter 3.0
 #
 # Created by Rodney I. Yager on 27.05.16
 # Copyright 2016-2023 Rodney I. Yager. All rights reserved
@@ -40,7 +41,7 @@ xcodebuild -alltargets archive
 
 cd build
 
-echo "### move binaries from tempory build folder"
+echo "### move binaries from temporary build folder"
 mv "$BUILDTEMP/$UTILITYAPP" "$UTILITYAPP"
 mv "$BUILDTEMP/$PDFWRITER" $PDFWRITER
 

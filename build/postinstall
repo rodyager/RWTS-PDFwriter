@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # postinstall
-# pdfwriter
+# pdfwriter 3.0
 #
 # Copyright 2023 Rodney I. Yager
 
 # make symlink
 ln -sf /Library/Printers/RWTS/PDFwriter/pdfwriter /usr/libexec/cups/backend/pdfwriter
 
-# restrict running uninstall.sh to admin users only
+# restrict running uninstall to admin users only
 chgrp admin /Library/Printers/RWTS/PDFwriter/uninstall
 chmod 750 /Library/Printers/RWTS/PDFwriter/uninstall
 

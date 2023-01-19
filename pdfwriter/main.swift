@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  pdfwriter v3.0
+//  pdfwriter 3.0
 //
 //  Created by Rod Yager on 18/1/2023.
 //
