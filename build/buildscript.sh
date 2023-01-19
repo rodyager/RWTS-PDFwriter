@@ -36,18 +36,11 @@ done
 cd "$(dirname "$0")"
 
 cd ../
-echo "### building Utility and printer driver"
-xcodebuild -alltargets archive
+echo "#### building Utility and printer driver - see build/build.log for details"
+xcodebuild -alltargets archive > build/build.log
+tail -2 build/build.log
 
 cd build
-
-echo "### move binaries from temporary build folder"
-mv "$BUILDTEMP/$UTILITYAPP" "$UTILITYAPP"
-mv "$BUILDTEMP/$PDFWRITER" $PDFWRITER
-
-echo "### clean up build artefacts"
-
-rm -r EagerLinkingTBDs  PDFWriter.build Release XCBuildData
 
 echo "#### making directory structure"
 mkdir pkgroot resources scripts
@@ -57,8 +50,8 @@ mkdir -m 775 $UTILITIESDIR
 
 echo "#### populating directory structure"
 iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
-cp $PDFWRITER  $PDFWRITERDIR/
-cp -r "$UTILITYAPP" $UTILITIESDIR/
+mv  "$BUILDTEMP/$PDFWRITER"  $PDFWRITERDIR/
+mv "$BUILDTEMP/$UTILITYAPP" $UTILITIESDIR/
 cp uninstall PDFfolder.png $PDFWRITERDIR/
 gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
 
@@ -103,6 +96,6 @@ if [ ! -z "$SIGNSTRING"  ]; then echo "#### signing product";
 else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 
 echo "#### cleaning up"
-rm -r pkgroot resources scripts expanded *.pkg distribution.dist "$UTILITYAPP" $PDFWRITER
+rm -r pkgroot resources scripts expanded *.pkg distribution.dist EagerLinkingTBDs  PDFWriter.build Release XCBuildData
 
 exit 0

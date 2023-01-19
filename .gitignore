@@ -3,3 +3,4 @@ DeveloperID
 *.pkg
 *.xcuserdatad
 /~/tmp/
+build/build.log
