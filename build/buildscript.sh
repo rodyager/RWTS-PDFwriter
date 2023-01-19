@@ -36,9 +36,15 @@ done
 cd "$(dirname "$0")"
 
 cd ../
-echo "#### building Utility and printer driver - see build/build.log for details"
+echo "#### building Utility and printer driver- see
+        "`realpath build/build.log`"
+    for details"
 xcodebuild -alltargets archive > build/build.log
-tail -2 build/build.log
+if [ $? -ne 0 ]; then  # xcodebuild produced an error
+    rm -r EagerLinkingTBDs  PDFWriter.build Release XCBuildData
+    exit
+fi
+echo "#### constructing installer package"
 
 cd build
 
@@ -98,4 +104,6 @@ else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
 echo "#### cleaning up"
 rm -r pkgroot resources scripts expanded *.pkg distribution.dist EagerLinkingTBDs  PDFWriter.build Release XCBuildData
 
+echo "#### Installer package is located at
+    "`realpath ../RWTS-PDFwriter.pkg`
 exit 0
