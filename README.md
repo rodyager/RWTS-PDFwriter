@@ -46,7 +46,7 @@ Then execute
 
 `   xcrun notarytool store-credentials "<Your Keychain Profile>" --apple-id "<Your AppleID>" --team-id "<Your WWDRTeamID>" --password "<Your app-specific password>”  `
 
-If you have built your own, delete any copies of **PDFWriter Utility** before running your installer, as otherwise, it will be installed over your existing copy and not in the Utilities folder.
+## Licence
 
 As this project is released under GNU GPL License Version 2, you are welcome to make modifications and improvement and incorporate it in your own software, provided you also release your software under the same licensing system. Read the [License](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/License) for full details.
 

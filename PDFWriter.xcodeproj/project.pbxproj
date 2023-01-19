@@ -112,15 +112,15 @@
 			isa = PBXGroup;
 			children = (
 				5557B91A2978AD6F00199134 /* buildscript.sh */,
-				5557B91B2978AD6F00199134 /* postinstall */,
-				5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */,
-				5557B91D2978AD6F00199134 /* README.rtfd */,
 				5557B91E2978AD6F00199134 /* component */,
-				5557B91F2978AD6F00199134 /* requirements */,
-				5557B9202978AD6F00199134 /* uninstall */,
-				5557B9212978AD6F00199134 /* preinstall */,
-				5557B9222978AD6F00199134 /* PDFwriter.iconset */,
 				5557B9232978AD6F00199134 /* PDFfolder.png */,
+				5557B9222978AD6F00199134 /* PDFwriter.iconset */,
+				5557B91B2978AD6F00199134 /* postinstall */,
+				5557B9212978AD6F00199134 /* preinstall */,
+				5557B91D2978AD6F00199134 /* README.rtfd */,
+				5557B91F2978AD6F00199134 /* requirements */,
+				5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */,
+				5557B9202978AD6F00199134 /* uninstall */,
 			);
 			path = build;
 			sourceTree = "<group>";
