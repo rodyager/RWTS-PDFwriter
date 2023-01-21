@@ -33,6 +33,7 @@
 		5506A7B0285F18C100C5BDF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5506A7B3285F18C100C5BDF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5506A7B5285F18C100C5BDF5 /* PDFWriter_Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PDFWriter_Utility.entitlements; sourceTree = "<group>"; };
+		554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */ = {isa = PBXFileReference; lastKnownFileType = text; path = PDFWriter.drv; sourceTree = "<group>"; };
 		5557B91A2978AD6F00199134 /* buildscript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buildscript.sh; sourceTree = "<group>"; };
 		5557B91B2978AD6F00199134 /* postinstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinstall; sourceTree = "<group>"; };
 		5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RWTS PDFwriter.ppd"; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 				5557B91D2978AD6F00199134 /* README.rtfd */,
 				5557B91F2978AD6F00199134 /* requirements */,
 				5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */,
+				554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */,
 				5557B9202978AD6F00199134 /* uninstall */,
 			);
 			path = build;
@@ -273,7 +275,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -293,7 +295,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -336,7 +338,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -350,7 +352,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -369,7 +371,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PDFWriter Utility/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -385,7 +387,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "au.rwts.PDFWriter-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -404,7 +406,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PDFWriter Utility/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -420,7 +422,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "au.rwts.PDFWriter-Utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -435,12 +437,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_TEAM = H2LX99GBPZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -452,13 +454,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3.0;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = H2LX99GBPZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = au.rwts.PDFWriter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

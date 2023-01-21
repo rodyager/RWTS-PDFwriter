@@ -2,7 +2,7 @@
 
 # buildscript.sh
 # builds RWTS PDFwriter installer package
-# pdfwriter 3.0
+# pdfwriter 3.1
 #
 # Created by Rodney I. Yager on 27.05.16
 # Copyright 2016-2023 Rodney I. Yager. All rights reserved
@@ -36,7 +36,7 @@ done
 cd "$(dirname "$0")"
 
 cd ../
-echo "#### building Utility and printer driver- see
+echo "#### building Utility and printer driver (this may take some time) --- see
         "`realpath build/build.log`"
     for details"
 xcodebuild -alltargets archive > build/build.log
@@ -59,20 +59,17 @@ iconutil -c icns -o $PDFWRITERDIR/PDFwriter.icns PDFwriter.iconset
 mv  "$BUILDTEMP/$PDFWRITER"  $PDFWRITERDIR/
 mv "$BUILDTEMP/$UTILITYAPP" $UTILITIESDIR/
 cp uninstall PDFfolder.png $PDFWRITERDIR/
-gzip -c "$PPDFILE".ppd > $PPDDIR/"$PPDFILE".gz
+ppdc -d $PPDDIR -z pdfwriter.drv    # generates the PPD file
 
 chmod 700 $PDFWRITERDIR/$PDFWRITER
 chmod 755 $PDFWRITERDIR/uninstall  postinstall preinstall   # uninstall will be root:admin 750 after postinstall, but this will be ok if permissions are "repaired"
-
-chmod 644 $PPDDIR/"$PPDFILE".gz
 
 cp PDFWriter.iconset/icon_256x256.png resources/background.png
 cp ../License resources/
 cp postinstall preinstall scripts/
 
 echo "#### building installer package"
-
-pkgbuild --root pkgroot --component-plist component --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 3.0 pdfwriter.pkg > /dev/null
+pkgbuild --root pkgroot --component-plist component --identifier au.rwts.pdfwriter --ownership recommended --scripts scripts --version 3.1 pdfwriter.pkg > /dev/null
 
 echo "#### building distribution file"
 productbuild --synthesize --product requirements  --package pdfwriter.pkg distribution.dist > /dev/null
@@ -92,14 +89,20 @@ pkgutil --expand product.pkg expanded
 cp -r README.rtfd expanded/Resources/
 pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
-if [ ! -z "$SIGNSTRING"  ]; then echo "#### signing product";
-    productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null;
+if [ ! -z "$SIGNSTRING"  ]; then
+    echo "#### signing product"
+    productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null
 
-    if [ ! -z "$NOTARYSTRING" ]; then echo "#### notarizing product";
-        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --wait;
-        xcrun stapler staple ../RWTS-PDFwriter.pkg;
+    if [ ! -z "$NOTARYSTRING" ]; then
+        echo "#### notarizing product
+        (please wait for Apple to process the package)"
+        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --no-progress --wait
+        echo "#### stapling notarization to installer package"
+        xcrun stapler staple -q ../RWTS-PDFwriter.pkg
     fi
-else mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg; fi
+else
+    mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg
+fi
 
 echo "#### cleaning up"
 rm -r pkgroot resources scripts expanded *.pkg distribution.dist EagerLinkingTBDs  PDFWriter.build Release XCBuildData

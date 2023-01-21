@@ -1,0 +1,215 @@
+// Include standard font and media definitions
+#include <font.defs>
+#include <media.defs>
+
+// List the fonts that are supported, in this case all standard fonts...
+Font *
+
+// Manufacturer, model name, and version
+Manufacturer "RWTS"
+ModelName "PDFWriter"
+Version 3.1
+
+// Custom attributes
+Attribute 1284DeviceID  "" "MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;"
+Attribute APPrinterUtilityPath "" "/Library/Printers/RWTS/Utilities/PDFWriter Utility.app"
+
+// Filter - this is the crucial line
+Filter application/vnd.cups-pdf 0 -
+
+// Allow user to add a Custom Page Size
+VariablePaperSize yes
+MaxSize 5m 5m
+
+// Specify the name of the PPD file generate...
+PCFileName "RWTS PDFwriter"
+
+// Color Handling
+ColorDevice true
+
+// Supported page sizes - all known standard sizes.  Set A4 as default
+MediaSize 3x5
+MediaSize 3.5x5
+MediaSize 5x7
+MediaSize 10x11
+MediaSize 10x13
+MediaSize 10x14
+MediaSize 12x11
+MediaSize 15x11
+MediaSize 7x9
+MediaSize 8x10
+MediaSize 9x11
+MediaSize 9x12
+MediaSize A0
+MediaSize A0.Transverse
+MediaSize A1
+MediaSize A1.Transverse
+MediaSize A2
+MediaSize A2.Transverse
+MediaSize A3
+MediaSize A3.Transverse
+MediaSize A3Extra
+MediaSize A3Extra.Transverse
+MediaSize A3Rotated
+*MediaSize A4
+MediaSize A4Extra
+MediaSize A4Plus
+MediaSize A4Rotated
+MediaSize A4Small
+MediaSize A4.Transverse
+MediaSize A5
+MediaSize A5Extra
+MediaSize A5Rotated
+MediaSize A5.Transverse
+MediaSize A6
+MediaSize A6Rotated
+MediaSize A7
+MediaSize A8
+MediaSize A9
+MediaSize A10
+MediaSize AnsiA
+MediaSize AnsiB
+MediaSize AnsiC
+MediaSize AnsiD
+MediaSize AnsiE
+MediaSize ARCHA
+MediaSize ARCHA.Transverse
+MediaSize ARCHB
+MediaSize ARCHB.Transverse
+MediaSize ARCHC
+MediaSize ARCHC.Transverse
+MediaSize ARCHD
+MediaSize ARCHD.Transverse
+MediaSize ARCHE
+MediaSize ARCHE.Transverse
+MediaSize B0
+MediaSize B10
+MediaSize B1
+MediaSize B1
+MediaSize B2
+MediaSize B3
+MediaSize B4
+MediaSize B4Rotated
+MediaSize B5
+MediaSize B5Rotated
+MediaSize B5.Transverse
+MediaSize B6
+MediaSize B6Rotated
+MediaSize B7
+MediaSize B8
+MediaSize B9
+MediaSize C4
+MediaSize C5
+MediaSize C6
+MediaSize DL
+MediaSize DoublePostcard
+MediaSize DoublePostcardRotated
+MediaSize Env10
+MediaSize Env11
+MediaSize Env12
+MediaSize Env14
+MediaSize Env9
+MediaSize EnvC0
+MediaSize EnvC1
+MediaSize EnvC2
+MediaSize EnvC3
+MediaSize EnvC4
+MediaSize EnvC5
+MediaSize EnvC65
+MediaSize EnvC6
+MediaSize EnvC7
+MediaSize EnvChou3
+MediaSize EnvChou3Rotated
+MediaSize EnvChou4
+MediaSize EnvChou4Rotated
+MediaSize EnvDL
+MediaSize EnvInvite
+MediaSize EnvISOB4
+MediaSize EnvISOB5
+MediaSize EnvISOB6
+MediaSize EnvItalian
+MediaSize EnvKaku2
+MediaSize EnvKaku2Rotated
+MediaSize EnvKaku3
+MediaSize EnvKaku3Rotated
+MediaSize EnvMonarch
+MediaSize EnvPersonal
+MediaSize EnvPRC1
+MediaSize EnvPRC1Rotated
+MediaSize EnvPRC2
+MediaSize EnvPRC2Rotated
+MediaSize EnvPRC3
+MediaSize EnvPRC3Rotated
+MediaSize EnvPRC4
+MediaSize EnvPRC4Rotated
+MediaSize EnvPRC5
+MediaSize EnvPRC5Rotated
+MediaSize EnvPRC6
+MediaSize EnvPRC6Rotated
+MediaSize EnvPRC7
+MediaSize EnvPRC7Rotated
+MediaSize EnvPRC8
+MediaSize EnvPRC8Rotated
+MediaSize EnvPRC9
+MediaSize EnvPRC9Rotated
+MediaSize EnvPRC10
+MediaSize EnvPRC10Rotated
+MediaSize EnvYou4
+MediaSize EnvYou4Rotated
+MediaSize Executive
+MediaSize FanFoldGerman
+MediaSize FanFoldGermanLegal
+MediaSize FanFoldUS
+MediaSize Folio
+MediaSize ISOB0
+MediaSize ISOB1
+MediaSize ISOB2
+MediaSize ISOB3
+MediaSize ISOB4
+MediaSize ISOB5
+MediaSize ISOB5Extra
+MediaSize ISOB6
+MediaSize ISOB7
+MediaSize ISOB8
+MediaSize ISOB9
+MediaSize ISOB10
+MediaSize Ledger
+MediaSize Legal
+MediaSize LegalExtra
+MediaSize Letter
+MediaSize Letter.Transverse
+MediaSize LetterExtra
+MediaSize LetterExtra.Transverse
+MediaSize LetterPlus
+MediaSize LetterRotated
+MediaSize LetterSmall
+MediaSize Monarch
+MediaSize Note
+MediaSize Postcard
+MediaSize PostcardRotated
+MediaSize PRC16K
+MediaSize PRC16KRotated
+MediaSize PRC32K
+MediaSize PRC32KBig
+MediaSize PRC32KBigRotated
+MediaSize PRC32KRotated
+MediaSize Quarto
+MediaSize Statement
+MediaSize SuperA
+MediaSize SuperB
+MediaSize Tabloid
+MediaSize TabloidExtra
+
+MediaSize Photo4x6
+MediaSize PhotoLabel
+MediaSize w936h1368
+MediaSize w81h252
+MediaSize w101h252
+MediaSize w54h144
+MediaSize w167h288
+MediaSize w162h540
+MediaSize w162h504
+MediaSize w41h248
+MediaSize w41h144
+MediaSize w153h198
+

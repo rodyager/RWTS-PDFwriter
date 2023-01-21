@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  pdfwriter 3.0
+//  pdfwriter 3.1
 //
 //  Created by Rod Yager on 18/1/2023.
 //
@@ -12,17 +12,29 @@ var outDir = "/var/spool/pdfwriter/"
 var nobodyName = "anonaymous users"
 var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
 
-if ( setuid(0) != 0 ) {
-    fputs("pdfwriter cannot be called without root privileges!\n", stderr)
-    exit(0)
+enum cups_backend_exit_codes: Int32
+{
+  case CUPS_BACKEND_OK = 0            /* Job completed successfully */
+  case CUPS_BACKEND_FAILED = 1        /* Job failed, use error-policy */
+  case CUPS_BACKEND_AUTH_REQUIRED = 2    /* Job failed, authentication required */
+  case CUPS_BACKEND_HOLD = 3        /* Job failed, hold job */
+  case CUPS_BACKEND_STOP = 4        /* Job failed, stop queue */
+  case CUPS_BACKEND_CANCEL = 5        /* Job failed, cancel job */
+  case CUPS_BACKEND_RETRY = 6        /* Job failed, retry this job later */
+  case CUPS_BACKEND_RETRY_CURRENT = 7    /* Job failed, retry this job immediately */
+}
+
+if ( setuid(0 ) != 0 ) {
+    fputs("ERROR: pdfwriter cannot be called without root privileges!\n", stderr)
+    exit(Int32(CUPS_BACKEND_OK.rawValue))
 }
 
 switch CommandLine.argc {
 case 1: fputs("file pdfwriter:/ \"Virtual PDF Printer\" \"PDFwriter\" \"MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;\"\n", stderr)
-    exit(0)
+    exit(Int32(CUPS_BACKEND_OK.rawValue))
 case 6: break
-default: fputs("Usage: pdfwriter job-id user title copies options [file]\n", stderr)
-    exit(0)
+default: fputs("Usage: \(CommandLine.arguments[0]) job-id user title copies options [file]\n", stderr)
+    exit(Int32(CUPS_BACKEND_OK.rawValue))
 }
 
 // check that it is actually a PDF file
@@ -32,12 +44,12 @@ do {
     prefix = try stdIn.read(upToCount: 4)!
 }
 catch {
-    fputs("Application print output unreadable\n", stderr)
-    exit(0)
+    fputs("ERROR: Application print output unreadable\n", stderr)
+    exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
 }
 if String(data: prefix, encoding: .utf8)! != "%PDF" {
-    fputs("Application print output is not compatible\n", stderr)
-    exit(0)
+    fputs("ERROR: Application print output is not compatible\n", stderr)
+    exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
 }
 
 // Determine who is printing
@@ -63,8 +75,8 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
         try FileManager.default.createDirectory(atPath: outDir, withIntermediateDirectories: true)
     }
     catch {
-        fputs("Unable to create output directory at \(outDir)\n", stderr)
-        exit(0)
+        fputs("ERROR: Unable to create output directory at \(outDir)\n", stderr)
+        exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
     }
     NSWorkspace.shared.setIcon(NSImage(byReferencingFile: folderIconPath), forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
     let mode = user == nobodyName ? mode_t(0o777) : mode_t(0o700)
@@ -105,7 +117,7 @@ while (true ) {
     handle.write(data)
 }
 
-exit(0)
+exit(Int32(CUPS_BACKEND_OK.rawValue))
 
 
 
