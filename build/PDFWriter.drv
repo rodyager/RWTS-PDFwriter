@@ -47,34 +47,34 @@ MediaSize A1.Transverse
 MediaSize A2
 MediaSize A2.Transverse
 MediaSize A3
-MediaSize A3.Transverse
+//MediaSize A3.Transverse   # A3Rotated
 MediaSize A3Extra
-MediaSize A3Extra.Transverse
+//MediaSize A3Extra.Transverse  #A3Extra
 MediaSize A3Rotated
 *MediaSize A4
 MediaSize A4Extra
 MediaSize A4Plus
 MediaSize A4Rotated
-MediaSize A4Small
-MediaSize A4.Transverse
+//MediaSize A4Small     #A4
+//MediaSize A4.Transverse   # A4Rotated
 MediaSize A5
 MediaSize A5Extra
 MediaSize A5Rotated
-MediaSize A5.Transverse
+//MediaSize A5.Transverse   # A5Rotated
 MediaSize A6
 MediaSize A6Rotated
 MediaSize A7
 MediaSize A8
 MediaSize A9
 MediaSize A10
-MediaSize AnsiA
-MediaSize AnsiB
+//MediaSize AnsiA  #Letter
+//MediaSize AnsiB   #Tabloid
 MediaSize AnsiC
 MediaSize AnsiD
 MediaSize AnsiE
-MediaSize ARCHA
+//MediaSize ARCHA       #9x12
 MediaSize ARCHA.Transverse
-MediaSize ARCHB
+//MediaSize ARCHB       #TabloidExtra
 MediaSize ARCHB.Transverse
 MediaSize ARCHC
 MediaSize ARCHC.Transverse
@@ -92,16 +92,16 @@ MediaSize B4
 MediaSize B4Rotated
 MediaSize B5
 MediaSize B5Rotated
-MediaSize B5.Transverse
+//MediaSize B5.Transverse  #B5
 MediaSize B6
 MediaSize B6Rotated
 MediaSize B7
 MediaSize B8
 MediaSize B9
-MediaSize C4
-MediaSize C5
-MediaSize C6
-MediaSize DL
+//MediaSize C4      #EnvC4
+//MediaSize C5      #EnvC5
+//MediaSize C6      #EnvC6
+//MediaSize DL      #EnvDL
 MediaSize DoublePostcard
 MediaSize DoublePostcardRotated
 MediaSize Env10
@@ -139,10 +139,10 @@ MediaSize EnvPRC1Rotated
 MediaSize EnvPRC2
 MediaSize EnvPRC2Rotated
 MediaSize EnvPRC3
-MediaSize EnvPRC3Rotated
+//MediaSize EnvPRC3Rotated #EnvISOB6
 MediaSize EnvPRC4
 MediaSize EnvPRC4Rotated
-MediaSize EnvPRC5
+//MediaSize EnvPRC5     #EnvDL
 MediaSize EnvPRC5Rotated
 MediaSize EnvPRC6
 MediaSize EnvPRC6Rotated
@@ -150,7 +150,7 @@ MediaSize EnvPRC7
 MediaSize EnvPRC7Rotated
 MediaSize EnvPRC8
 MediaSize EnvPRC8Rotated
-MediaSize EnvPRC9
+//MediaSize EnvPRC9     #EnvC4
 MediaSize EnvPRC9Rotated
 MediaSize EnvPRC10
 MediaSize EnvPRC10Rotated
@@ -166,9 +166,9 @@ MediaSize ISOB1
 MediaSize ISOB2
 MediaSize ISOB3
 MediaSize ISOB4
-MediaSize ISOB5
+//MediaSize ISOB5   #EnvISOB5
 MediaSize ISOB5Extra
-MediaSize ISOB6
+//MediaSize ISOB6   #EnvPRC3
 MediaSize ISOB7
 MediaSize ISOB8
 MediaSize ISOB9
@@ -177,21 +177,21 @@ MediaSize Ledger
 MediaSize Legal
 MediaSize LegalExtra
 MediaSize Letter
-MediaSize Letter.Transverse
+//MediaSize Letter.Transverse   #LetterRotated
 MediaSize LetterExtra
 MediaSize LetterExtra.Transverse
 MediaSize LetterPlus
 MediaSize LetterRotated
-MediaSize LetterSmall
-MediaSize Monarch
-MediaSize Note
+//MediaSize LetterSmall  #Letter
+//MediaSize Monarch     #EnvMonarch
+//MediaSize Note        #Letter
 MediaSize Postcard
 MediaSize PostcardRotated
 MediaSize PRC16K
 MediaSize PRC16KRotated
 MediaSize PRC32K
-MediaSize PRC32KBig
-MediaSize PRC32KBigRotated
+//MediaSize PRC32KBig  #PRC32K
+//MediaSize PRC32KBigRotated #PRC32KRotated
 MediaSize PRC32KRotated
 MediaSize Quarto
 MediaSize Statement
