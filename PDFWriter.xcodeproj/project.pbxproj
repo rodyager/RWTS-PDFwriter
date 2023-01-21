@@ -36,7 +36,6 @@
 		554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */ = {isa = PBXFileReference; lastKnownFileType = text; path = PDFWriter.drv; sourceTree = "<group>"; };
 		5557B91A2978AD6F00199134 /* buildscript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buildscript.sh; sourceTree = "<group>"; };
 		5557B91B2978AD6F00199134 /* postinstall */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinstall; sourceTree = "<group>"; };
-		5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RWTS PDFwriter.ppd"; sourceTree = "<group>"; };
 		5557B91D2978AD6F00199134 /* README.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = README.rtfd; sourceTree = "<group>"; };
 		5557B91E2978AD6F00199134 /* component */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = component; sourceTree = "<group>"; };
 		5557B91F2978AD6F00199134 /* requirements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = requirements; sourceTree = "<group>"; };
@@ -120,7 +119,6 @@
 				5557B9212978AD6F00199134 /* preinstall */,
 				5557B91D2978AD6F00199134 /* README.rtfd */,
 				5557B91F2978AD6F00199134 /* requirements */,
-				5557B91C2978AD6F00199134 /* RWTS PDFwriter.ppd */,
 				554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */,
 				5557B9202978AD6F00199134 /* uninstall */,
 			);

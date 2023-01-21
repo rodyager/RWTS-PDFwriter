@@ -12,6 +12,7 @@ Version 3.1
 
 // Custom attributes
 Attribute 1284DeviceID  "" "MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;"
+Attribute APPrinterIconPath "" "/Library/Printers/RWTS/PDFwriter/PDFwriter.icns"
 Attribute APPrinterUtilityPath "" "/Library/Printers/RWTS/Utilities/PDFWriter Utility.app"
 
 // Filter - this is the crucial line
