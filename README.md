@@ -15,7 +15,7 @@ Download the installer package by clicking on the printer icon above and install
 ![Utility Image](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Utility.png)
 
 Other users can access this utility to create their own print destination from the ` Options & Supplies ` button for the printer in ` System Preferences > Printers & Scanners  `
-![Printer Image](https://github.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Printer1.png)
+![Printer Image](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Printer1.png)
 ![Options and Supplies Image](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Printer2.png)    
 After installation, your new printer will be ready for use.
 
