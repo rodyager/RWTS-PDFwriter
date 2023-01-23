@@ -12,19 +12,7 @@ var outDir = "/var/spool/pdfwriter/"
 var nobodyName = "anonaymous users"
 var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
 
-func exit(_ code: cups_backend_t) ->Never { exit(Int32(code.rawValue)) }
-
-extension String {
-    mutating func sanitizeFileName() { // remove illegal characters and path extension
-        let invalidCharsets = CharacterSet(charactersIn: "? \"*:/\\")
-                    .union(.illegalCharacters)
-                    .union(.controlCharacters)
-                    .union(.symbols)
-                    .union(.newlines)
-        self = self.split(whereSeparator: { invalidCharsets.contains($0.unicodeScalars.first!) }).joined(separator: " ")
-        self = (self as NSString).deletingPathExtension
-    }
-}
+func exit(_ code: cups_backend_t) -> Never { exit(Int32(code.rawValue)) }
 
 if ( setuid(0 ) != 0 ) {
     fputs("ERROR: pdfwriter cannot be called without root privileges!\n", stderr)
@@ -86,11 +74,12 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
     chown(outDir, passwd.pw_uid, passwd.pw_gid)
 }
 
-var fileName = CommandLine.arguments[3]
-
-// sanititize title
+/*
+    / is not allowed in a filename, but Finder displays : as /
+    createFile() will remove newline characters
+*/
+var fileName = (CommandLine.arguments[3].replacingOccurrences(of: "/", with: ":") as NSString).deletingPathExtension
 if fileName == "(stdin)" {fileName = "Untitled" }
-fileName.sanitizeFileName()
 
 // make sure we have a unique filename
 var outFile = outDir + "/" + fileName + ".pdf"
