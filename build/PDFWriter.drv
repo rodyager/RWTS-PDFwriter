@@ -28,7 +28,9 @@ PCFileName "RWTS PDFwriter"
 // Color Handling
 ColorDevice true
 
-// Supported page sizes - all known standard sizes.  Set A4 as default
+// Supported page sizes - all known standard sizes.  see https://github.com/apple/cups/blob/master/data/media.defs
+// Duplicate names for same size and rotations commented out. (Use Portrait/Landscape choice)
+// Set A4 as the default
 MediaSize 3x5
 MediaSize 3.5x5
 MediaSize 5x7
@@ -42,28 +44,28 @@ MediaSize 8x10
 MediaSize 9x11
 MediaSize 9x12
 MediaSize A0
-MediaSize A0.Transverse
+//MediaSize A0.Transverse
 MediaSize A1
-MediaSize A1.Transverse
+//MediaSize A1.Transverse
 MediaSize A2
-MediaSize A2.Transverse
+//MediaSize A2.Transverse
 MediaSize A3
 //MediaSize A3.Transverse   # A3Rotated
 MediaSize A3Extra
 //MediaSize A3Extra.Transverse  #A3Extra
-MediaSize A3Rotated
+//MediaSize A3Rotated
 *MediaSize A4
 MediaSize A4Extra
 MediaSize A4Plus
-MediaSize A4Rotated
+//MediaSize A4Rotated
 //MediaSize A4Small     #A4
 //MediaSize A4.Transverse   # A4Rotated
 MediaSize A5
 MediaSize A5Extra
-MediaSize A5Rotated
+//MediaSize A5Rotated
 //MediaSize A5.Transverse   # A5Rotated
 MediaSize A6
-MediaSize A6Rotated
+//MediaSize A6Rotated
 MediaSize A7
 MediaSize A8
 MediaSize A9
@@ -74,15 +76,15 @@ MediaSize AnsiC
 MediaSize AnsiD
 MediaSize AnsiE
 //MediaSize ARCHA       #9x12
-MediaSize ARCHA.Transverse
+//MediaSize ARCHA.Transverse
 //MediaSize ARCHB       #TabloidExtra
-MediaSize ARCHB.Transverse
+//MediaSize ARCHB.Transverse
 MediaSize ARCHC
-MediaSize ARCHC.Transverse
+//MediaSize ARCHC.Transverse
 MediaSize ARCHD
-MediaSize ARCHD.Transverse
+//MediaSize ARCHD.Transverse
 MediaSize ARCHE
-MediaSize ARCHE.Transverse
+//MediaSize ARCHE.Transverse
 MediaSize B0
 MediaSize B10
 MediaSize B1
@@ -90,12 +92,12 @@ MediaSize B1
 MediaSize B2
 MediaSize B3
 MediaSize B4
-MediaSize B4Rotated
+//MediaSize B4Rotated
 MediaSize B5
-MediaSize B5Rotated
+//MediaSize B5Rotated
 //MediaSize B5.Transverse  #B5
 MediaSize B6
-MediaSize B6Rotated
+//MediaSize B6Rotated
 MediaSize B7
 MediaSize B8
 MediaSize B9
@@ -104,7 +106,7 @@ MediaSize B9
 //MediaSize C6      #EnvC6
 //MediaSize DL      #EnvDL
 MediaSize DoublePostcard
-MediaSize DoublePostcardRotated
+//MediaSize DoublePostcardRotated
 MediaSize Env10
 MediaSize Env11
 MediaSize Env12
@@ -120,9 +122,9 @@ MediaSize EnvC65
 MediaSize EnvC6
 MediaSize EnvC7
 MediaSize EnvChou3
-MediaSize EnvChou3Rotated
+//MediaSize EnvChou3Rotated
 MediaSize EnvChou4
-MediaSize EnvChou4Rotated
+//MediaSize EnvChou4Rotated
 MediaSize EnvDL
 MediaSize EnvInvite
 MediaSize EnvISOB4
@@ -130,33 +132,33 @@ MediaSize EnvISOB5
 MediaSize EnvISOB6
 MediaSize EnvItalian
 MediaSize EnvKaku2
-MediaSize EnvKaku2Rotated
+//MediaSize EnvKaku2Rotated
 MediaSize EnvKaku3
-MediaSize EnvKaku3Rotated
+//MediaSize EnvKaku3Rotated
 MediaSize EnvMonarch
 MediaSize EnvPersonal
 MediaSize EnvPRC1
-MediaSize EnvPRC1Rotated
+//MediaSize EnvPRC1Rotated
 MediaSize EnvPRC2
-MediaSize EnvPRC2Rotated
+//MediaSize EnvPRC2Rotated
 MediaSize EnvPRC3
 //MediaSize EnvPRC3Rotated #EnvISOB6
 MediaSize EnvPRC4
-MediaSize EnvPRC4Rotated
+//MediaSize EnvPRC4Rotated
 //MediaSize EnvPRC5     #EnvDL
-MediaSize EnvPRC5Rotated
+//MediaSize EnvPRC5Rotated
 MediaSize EnvPRC6
-MediaSize EnvPRC6Rotated
+//MediaSize EnvPRC6Rotated
 MediaSize EnvPRC7
-MediaSize EnvPRC7Rotated
+//MediaSize EnvPRC7Rotated
 MediaSize EnvPRC8
-MediaSize EnvPRC8Rotated
+//MediaSize EnvPRC8Rotated
 //MediaSize EnvPRC9     #EnvC4
-MediaSize EnvPRC9Rotated
+//MediaSize EnvPRC9Rotated
 MediaSize EnvPRC10
-MediaSize EnvPRC10Rotated
+//MediaSize EnvPRC10Rotated
 MediaSize EnvYou4
-MediaSize EnvYou4Rotated
+//MediaSize EnvYou4Rotated
 MediaSize Executive
 MediaSize FanFoldGerman
 MediaSize FanFoldGermanLegal
@@ -180,20 +182,20 @@ MediaSize LegalExtra
 MediaSize Letter
 //MediaSize Letter.Transverse   #LetterRotated
 MediaSize LetterExtra
-MediaSize LetterExtra.Transverse
+//MediaSize LetterExtra.Transverse
 MediaSize LetterPlus
-MediaSize LetterRotated
+//MediaSize LetterRotated
 //MediaSize LetterSmall  #Letter
 //MediaSize Monarch     #EnvMonarch
 //MediaSize Note        #Letter
 MediaSize Postcard
-MediaSize PostcardRotated
+//MediaSize PostcardRotated
 MediaSize PRC16K
-MediaSize PRC16KRotated
+//MediaSize PRC16KRotated
 MediaSize PRC32K
 //MediaSize PRC32KBig  #PRC32K
 //MediaSize PRC32KBigRotated #PRC32KRotated
-MediaSize PRC32KRotated
+//MediaSize PRC32KRotated
 MediaSize Quarto
 MediaSize Statement
 MediaSize SuperA
