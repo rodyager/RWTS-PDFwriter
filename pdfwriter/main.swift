@@ -12,29 +12,31 @@ var outDir = "/var/spool/pdfwriter/"
 var nobodyName = "anonaymous users"
 var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
 
-enum cups_backend_exit_codes: Int32
-{
-  case CUPS_BACKEND_OK = 0            /* Job completed successfully */
-  case CUPS_BACKEND_FAILED = 1        /* Job failed, use error-policy */
-  case CUPS_BACKEND_AUTH_REQUIRED = 2    /* Job failed, authentication required */
-  case CUPS_BACKEND_HOLD = 3        /* Job failed, hold job */
-  case CUPS_BACKEND_STOP = 4        /* Job failed, stop queue */
-  case CUPS_BACKEND_CANCEL = 5        /* Job failed, cancel job */
-  case CUPS_BACKEND_RETRY = 6        /* Job failed, retry this job later */
-  case CUPS_BACKEND_RETRY_CURRENT = 7    /* Job failed, retry this job immediately */
+func exit(_ code: cups_backend_t) ->Never { exit(Int32(code.rawValue)) }
+
+extension String {
+    mutating func sanitizeFileName() { // remove illegal characters and path extension
+        let invalidCharsets = CharacterSet(charactersIn: "? \"*:/\\")
+                    .union(.illegalCharacters)
+                    .union(.controlCharacters)
+                    .union(.symbols)
+                    .union(.newlines)
+        self = self.split(whereSeparator: { invalidCharsets.contains($0.unicodeScalars.first!) }).joined(separator: " ")
+        self = (self as NSString).deletingPathExtension
+    }
 }
 
 if ( setuid(0 ) != 0 ) {
     fputs("ERROR: pdfwriter cannot be called without root privileges!\n", stderr)
-    exit(Int32(CUPS_BACKEND_OK.rawValue))
+    exit(CUPS_BACKEND_OK)
 }
 
 switch CommandLine.argc {
 case 1: fputs("file pdfwriter:/ \"Virtual PDF Printer\" \"PDFwriter\" \"MFG:RWTS;MDL:PDFwriter;DES:RWTS PDFwriter - Prints documents as PDF files;CLS:PRINTER;CMD:POSTSCRIPT;\"\n", stderr)
-    exit(Int32(CUPS_BACKEND_OK.rawValue))
+    exit(CUPS_BACKEND_OK)
 case 6: break
 default: fputs("Usage: \(CommandLine.arguments[0]) job-id user title copies options [file]\n", stderr)
-    exit(Int32(CUPS_BACKEND_OK.rawValue))
+    exit(CUPS_BACKEND_OK)
 }
 
 // check that it is actually a PDF file
@@ -45,11 +47,11 @@ do {
 }
 catch {
     fputs("ERROR: Application print output unreadable\n", stderr)
-    exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
+    exit(CUPS_BACKEND_CANCEL)
 }
 if String(data: prefix, encoding: .utf8)! != "%PDF" {
     fputs("ERROR: Application print output is not compatible\n", stderr)
-    exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
+    exit(CUPS_BACKEND_CANCEL)
 }
 
 // Determine who is printing
@@ -76,7 +78,7 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
     }
     catch {
         fputs("ERROR: Unable to create output directory at \(outDir)\n", stderr)
-        exit(Int32(CUPS_BACKEND_CANCEL.rawValue))
+        exit(CUPS_BACKEND_CANCEL)
     }
     NSWorkspace.shared.setIcon(NSImage(byReferencingFile: folderIconPath), forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
     let mode = user == nobodyName ? mode_t(0o777) : mode_t(0o700)
@@ -84,20 +86,18 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
     chown(outDir, passwd.pw_uid, passwd.pw_gid)
 }
 
-var title = CommandLine.arguments[3]
+var fileName = CommandLine.arguments[3]
 
 // sanititize title
-if title == "(stdin)" {title = "Untitled" }
-let illegalFileNameCharacters = NSCharacterSet(charactersIn: "/\\?%*|\"<>\r\n: ") as CharacterSet
-title = (title as NSString).components(separatedBy: illegalFileNameCharacters).filter{!$0.isEmpty}.joined(separator: " ")
-title = (title as NSString).deletingPathExtension
+if fileName == "(stdin)" {fileName = "Untitled" }
+fileName.sanitizeFileName()
 
 // make sure we have a unique filename
-var outFile = outDir + "/" + title + ".pdf"
+var outFile = outDir + "/" + fileName + ".pdf"
 var fileIndex = 0
 while ( FileManager.default.fileExists( atPath: outFile )) {
     fileIndex += 1
-    outFile = outDir + "/" + title + "-\(fileIndex).pdf"
+    outFile = outDir + "/" + fileName + "-\(fileIndex).pdf"
 }
 
 umask(0o077)
@@ -117,7 +117,4 @@ while (true ) {
     handle.write(data)
 }
 
-exit(Int32(CUPS_BACKEND_OK.rawValue))
-
-
-
+exit(CUPS_BACKEND_OK)
