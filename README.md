@@ -12,11 +12,11 @@ The provided installer installs a universal binary compatible with both Intel an
 
 ## Installation and Usage Instructions
 Download the installer package by clicking on the printer icon above and install as usual. The installer will open the **PDFWriter Utility** app which lets you create a destination folder for the PDFs you print. (You need to Quit the Utility after creating the destination folder to complete the installation.)
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/Screenshots/Utility.png)
+![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Utility.png)
 
 Other users can access this utility to create their own print destination from the ` Options & Supplies ` button for the printer in ` System Preferences > Printers & Scanners  `
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/Screenshots/Printer1.png)
-![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/Screenshots/Printer2.png)    
+![](https://github.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Printer1.png)
+![](https://raw.githubusercontent.com/rodyager/RWTS-PDFwriter/master/build/README.rtfd/Printer2.png)    
 After installation, your new printer will be ready for use.
 
 ### Usage
