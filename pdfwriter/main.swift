@@ -74,11 +74,7 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
     chown(outDir, passwd.pw_uid, passwd.pw_gid)
 }
 
-/*
-    / is not allowed in a filename, but Finder displays : as /
-    createFile() will remove newline characters
-*/
-var fileName = (CommandLine.arguments[3].replacingOccurrences(of: "/", with: ":") as NSString).deletingPathExtension
+var fileName = (CommandLine.arguments[3] as NSString).deletingPathExtension
 if fileName == "(stdin)" {fileName = "Untitled" }
 
 // make sure we have a unique filename
