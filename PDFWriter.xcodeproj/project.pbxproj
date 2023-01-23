@@ -45,6 +45,9 @@
 		5557B9232978AD6F00199134 /* PDFfolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PDFfolder.png; sourceTree = "<group>"; };
 		5557B9242978CBD400199134 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5557B9252978CBE100199134 /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
+		559F2FCD297E22E100D8EB41 /* Printer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Printer2.png; sourceTree = "<group>"; };
+		559F2FCE297E22E100D8EB41 /* Printer1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Printer1.png; sourceTree = "<group>"; };
+		559F2FCF297E22E100D8EB41 /* Utility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Utility.png; sourceTree = "<group>"; };
 		55BA6F6F297812A30090F158 /* pdfwriter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pdfwriter; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BA6F71297812A40090F158 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +75,7 @@
 			children = (
 				5557B9252978CBE100199134 /* License */,
 				5557B9242978CBD400199134 /* README.md */,
+				559F2FCC297E220000D8EB41 /* Screenshots */,
 				55BA6F70297812A40090F158 /* pdfwriter */,
 				5506A7AB285F18BF00C5BDF5 /* PDFWriter Utility */,
 				5557B9192978AD6F00199134 /* build */,
@@ -114,15 +118,25 @@
 				5557B91A2978AD6F00199134 /* buildscript.sh */,
 				5557B91E2978AD6F00199134 /* component */,
 				5557B9232978AD6F00199134 /* PDFfolder.png */,
+				554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */,
 				5557B9222978AD6F00199134 /* PDFwriter.iconset */,
 				5557B91B2978AD6F00199134 /* postinstall */,
 				5557B9212978AD6F00199134 /* preinstall */,
 				5557B91D2978AD6F00199134 /* README.rtfd */,
 				5557B91F2978AD6F00199134 /* requirements */,
-				554FCBF7297B5C7F00B44F07 /* PDFWriter.drv */,
 				5557B9202978AD6F00199134 /* uninstall */,
 			);
 			path = build;
+			sourceTree = "<group>";
+		};
+		559F2FCC297E220000D8EB41 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				559F2FCE297E22E100D8EB41 /* Printer1.png */,
+				559F2FCD297E22E100D8EB41 /* Printer2.png */,
+				559F2FCF297E22E100D8EB41 /* Utility.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		55BA6F70297812A40090F158 /* pdfwriter */ = {
