@@ -9,8 +9,8 @@ import AppKit
 import Darwin
 
 var outDir = "/var/spool/pdfwriter/"
-var nobodyName = "anonaymous users"
-var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
+var nobodyName = "anonymous users"
+var folderIcon = NSImage(byReferencingFile: "/Library/Printers/RWTS/PDFwriter/PDFfolder.png")
 
 func exit(_ code: cups_backend_t) -> Never { exit(Int32(code.rawValue)) }
 
@@ -68,14 +68,14 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
         fputs("ERROR: Unable to create output directory at \(outDir)\n", stderr)
         exit(CUPS_BACKEND_CANCEL)
     }
-    NSWorkspace.shared.setIcon(NSImage(byReferencingFile: folderIconPath), forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
+    NSWorkspace.shared.setIcon(folderIcon, forFile: outDir, options: .excludeQuickDrawElementsIconCreationOption)
     let mode = user == nobodyName ? mode_t(0o777) : mode_t(0o700)
     chmod(outDir, mode)
     chown(outDir, passwd.pw_uid, passwd.pw_gid)
 }
 
 var fileName = (CommandLine.arguments[3].replacingOccurrences(of:"/", with: ":") as NSString).deletingPathExtension
-if fileName == "(stdin)" {fileName = "Untitled" }
+if fileName == "(stdin)" {fileName = "Untitled" }           //   cat /path/to/file | lpr -P PDFwriter    without -J or -T option.
 
 // make sure we have a unique filename
 var outFile = outDir + "/" + fileName + ".pdf"
