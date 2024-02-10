@@ -9,7 +9,7 @@ import AppKit
 import Darwin
 
 var outDir = "/var/spool/pdfwriter/"
-var nobodyName = "anonaymous users"
+var nobodyName = "anonymous users"
 var folderIconPath = "/Library/Printers/RWTS/PDFwriter/PDFfolder.png"
 
 func exit(_ code: cups_backend_t) -> Never { exit(Int32(code.rawValue)) }
