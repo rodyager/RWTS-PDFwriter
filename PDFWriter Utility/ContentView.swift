@@ -20,9 +20,16 @@ struct ContentView: View {
             panel.nameFieldStringValue = "PDFWriter"
             panel.showsTagField = false
             if panel.runModal() == .OK {
-                let theOrigURL = NSURL.fileURL(withPath: "/private/var/spool/pdfwriter/\(NSUserName())")
+                let theOrigPath = "/private/var/spool/pdfwriter/\(NSUserName())"
+                let theOrigURL = NSURL.fileURL(withPath: theOrigPath)
                 do {
-                    try FileManager().createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
+                    let fileManager = FileManager()
+                    if !fileManager.fileExists(atPath: theOrigPath, isDirectory: nil) {
+                        try fileManager.createDirectory(atPath: theOrigPath,
+                                                        withIntermediateDirectories: true)
+                    }
+
+                    try fileManager.createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
                 }
                 catch{
                     showAlert = true
