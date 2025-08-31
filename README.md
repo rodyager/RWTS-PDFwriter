@@ -34,9 +34,9 @@ In the event that you want to compile your own copy, you can clone this reposito
 
 A signed and notarized product installer can be compiled by executing the script
 
-`   build/buildscript.sh -s "<Your DeveloperID>" -n "<Your Keychain Profile>"   `
+`   build/buildscript.sh  -n "<Your Keychain Profile>"   `
 
-Omit the -n if you do not wish to notarize the components, and omit the -s if you do not want to sign the components.
+Omit the -n if you do not wish to notarize the components. Note that you will need to have a valid Developer ID Installer certificate for signing and notarization of the installer package.
 
 You can create a "Keychain Profile" by generating an app-specific password at https://appleid.apple.com then executing
 
