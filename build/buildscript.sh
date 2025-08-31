@@ -20,14 +20,11 @@ BUILDTEMP="/tmp/PDFWriter.dst"
 
 while getopts "s:n:" opt; do
     case ${opt} in
-       s)
-        SIGNSTRING=${OPTARG}
-        ;;
        n)
         NOTARYSTRING=${OPTARG}
         ;;
        *)
-        echo "usage: buildscript [-s \"<your signing identity>\"] [-n \"<your keychain profile>\"]"
+        echo "usage: buildscript [-n \"<your keychain profile>\"]"
         exit 0
         ;;
     esac
@@ -89,17 +86,15 @@ pkgutil --expand product.pkg expanded
 cp -r README.rtfd expanded/Resources/
 pkgutil --flatten expanded RWTS-PDFwriter.pkg
 
-if [ ! -z "$SIGNSTRING"  ]; then
-    echo "#### signing product"
-    productsign --sign "$SIGNSTRING" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg > /dev/null
+if [ ! -z "$NOTARYSTRING"  ]; then
+    echo "#### signing product"        # Needs to be signed with a Developer ID Installer certificate
+    productsign --sign "Developer ID Installer" RWTS-PDFwriter.pkg  ../RWTS-PDFwriter.pkg
 
-    if [ ! -z "$NOTARYSTRING" ]; then
-        echo "#### notarizing product
-        (please wait for Apple to process the package)"
-        xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --no-progress --wait
-        echo "#### stapling notarization to installer package"
-        xcrun stapler staple -q ../RWTS-PDFwriter.pkg
-    fi
+    echo "#### notarizing product
+    (please wait for Apple to process the package)"
+    xcrun notarytool submit ../RWTS-PDFwriter.pkg --keychain-profile "$NOTARYSTRING" --no-progress --wait
+    echo "#### stapling notarization to installer package"
+    xcrun stapler staple -q ../RWTS-PDFwriter.pkg
 else
     mv RWTS-PDFwriter.pkg ../RWTS-PDFwriter.pkg
 fi
