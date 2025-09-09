@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showAlert = false
+    @State var errorMessage = ""
+    
     var body: some View {
         VStack{
         Spacer()
@@ -25,10 +27,11 @@ struct ContentView: View {
                 do {
                     let fileManager = FileManager()
                     if !fileManager.fileExists(atPath: theOrigPath, isDirectory: nil) {
+                        errorMessage = "Print one document using PDFWriter to complete OS setup and try again"
                         try fileManager.createDirectory(atPath: theOrigPath,
                                                         withIntermediateDirectories: true)
                     }
-
+                    errorMessage = "Note the replacing an existing location is not supported"
                     try fileManager.createSymbolicLink(at: panel.url!, withDestinationURL: theOrigURL)
                 }
                 catch{
@@ -38,7 +41,7 @@ struct ContentView: View {
         }.alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Save could not be completed"),
-                message: Text("Note that replacing an existing location is not supported.")
+                message: Text(errorMessage)
             )
         }
             Button("Reveal Uninstall script"){
