@@ -28,16 +28,15 @@ default: fputs("Usage: \(CommandLine.arguments[0]) job-id user title copies opti
 }
 
 // check that it is actually a PDF file
+// Compare raw bytes: the input may be arbitrary binary, so it must never
+// be force-decoded as UTF-8, and short/empty jobs must cancel cleanly.
 let stdIn: FileHandle = .standardInput
-let prefix:Data
-do {
-    prefix = try stdIn.read(upToCount: 4)!
+var prefix = Data()
+while prefix.count < 4 {
+    guard let chunk = try? stdIn.read(upToCount: 4 - prefix.count), !chunk.isEmpty else { break }
+    prefix.append(chunk)
 }
-catch {
-    fputs("ERROR: Application print output unreadable\n", stderr)
-    exit(CUPS_BACKEND_CANCEL)
-}
-if String(data: prefix, encoding: .utf8)! != "%PDF" {
+if prefix != Data("%PDF".utf8) {
     fputs("ERROR: Application print output is not compatible\n", stderr)
     exit(CUPS_BACKEND_CANCEL)
 }
@@ -75,7 +74,9 @@ if !FileManager.default.fileExists(atPath: outDir, isDirectory: &isDir) {
 }
 
 var fileName = (CommandLine.arguments[3].replacingOccurrences(of:"/", with: ":") as NSString).deletingPathExtension
-if fileName == "(stdin)" {fileName = "Untitled" }           //   cat /path/to/file | lpr -P PDFwriter    without -J or -T option.
+if fileName == "(stdin)" || fileName.isEmpty { fileName = "Untitled" }   //   cat /path/to/file | lpr -P PDFwriter    without -J or -T option.
+// Job titles (e.g. from browsers) can exceed the 255-byte filename limit.
+while fileName.utf8.count > 200 { fileName.removeLast() }
 
 // make sure we have a unique filename
 var outFile = outDir + "/" + fileName + ".pdf"
@@ -87,13 +88,15 @@ while ( FileManager.default.fileExists( atPath: outFile )) {
 
 umask(0o077)
 // create output file and set appropriate ownership and permissions
-FileManager.default.createFile(atPath: outFile, contents: nil )
+guard FileManager.default.createFile(atPath: outFile, contents: nil ),
+      let handle = FileHandle(forWritingAtPath: outFile) else {
+    fputs("ERROR: Unable to create output file at \(outFile)\n", stderr)
+    exit(CUPS_BACKEND_CANCEL)
+}
 chown(outFile, passwd.pw_uid, passwd.pw_gid)
 let mode = user == nobodyName ? mode_t(0o666) : mode_t(0o600)
 
 chmod(outFile, mode)
-
-let handle = FileHandle(forWritingAtPath: outFile)!
 
 handle.write(prefix)
 while (true ) {
