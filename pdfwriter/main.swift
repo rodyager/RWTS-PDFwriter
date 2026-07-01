@@ -81,24 +81,24 @@ var fileName = (CommandLine.arguments[3].replacingOccurrences(of:"/", with: ":")
 if fileName == "(stdin)" {fileName = "Untitled" }           //   cat /path/to/file | lpr -P PDFwriter    without -J or -T option.
 while fileName.utf8.count > 200 { fileName.removeLast() }
 
-// make sure we have a unique filename
+// Atomically create a unique output file using O_CREAT|O_EXCL, eliminating the
+// check-then-act race where two simultaneous jobs could overwrite each other.
+let fileMode = user == nobodyName ? mode_t(0o666) : mode_t(0o600)
+umask(0)
 var outFile = outDir + "/" + fileName + ".pdf"
 var fileIndex = 0
-while ( FileManager.default.fileExists( atPath: outFile )) {
+var fd = Darwin.open(outFile, O_CREAT | O_EXCL | O_WRONLY, fileMode)
+while fd == -1 && errno == EEXIST {
     fileIndex += 1
     outFile = outDir + "/" + fileName + "-\(fileIndex).pdf"
+    fd = Darwin.open(outFile, O_CREAT | O_EXCL | O_WRONLY, fileMode)
 }
-
-umask(0o077)
-// create output file and set appropriate ownership and permissions
-guard FileManager.default.createFile(atPath: outFile, contents: nil),
-      let handle = FileHandle(forWritingAtPath: outFile) else {
+guard fd != -1 else {
     fputs("ERROR: Unable to create output file at \(outFile)\n", stderr)
     exit(CUPS_BACKEND_CANCEL)
 }
+let handle = FileHandle(fileDescriptor: fd, closeOnDealloc: true)
 chown(outFile, passwd.pw_uid, passwd.pw_gid)
-let mode = user == nobodyName ? mode_t(0o666) : mode_t(0o600)
-chmod(outFile, mode)
 
 handle.write(prefix)
 while (true ) {
