@@ -85,6 +85,30 @@ MediaSize ARCHD
 //MediaSize ARCHD.Transverse
 MediaSize ARCHE
 //MediaSize ARCHE.Transverse
+
+// Large-format and flatbed sizes beyond ARCH E / A0 (CAD plots, signage boards, flatbed printers).
+// Sizes in their native units: ARCH and board/sheet sizes in inches, ISO/DIN and Canon Arizona in mm.
+// All fit within MaxSize 5m and within the PDF 200 in (5.08 m) page limit.
+#media "ARCHE1/ARCH E1 (30 x 42 in)" 30in 42in
+#media "A0Plus/A0+ (914 x 1292 mm)" 914mm 1292mm
+#media "2A0/2A0 (1189 x 1682 mm)" 1189mm 1682mm
+#media "4A0/4A0 (1682 x 2378 mm)" 1682mm 2378mm
+#media "48x72/48 x 72 in board (4 x 6 ft)" 48in 72in
+#media "48x96/48 x 96 in sheet (4 x 8 ft)" 48in 96in
+#media "72x96/72 x 96 in board (6 x 8 ft)" 72in 96in
+#media "96x120/96 x 120 in sheet (8 x 10 ft)" 96in 120in
+#media "ArizonaGT/Canon Arizona GT table (1250 x 2500 mm)" 1250mm 2500mm
+#media "ArizonaXT/Canon Arizona XT table (2500 x 3080 mm)" 2500mm 3080mm
+MediaSize ARCHE1
+MediaSize A0Plus
+MediaSize 2A0
+MediaSize 4A0
+MediaSize 48x72
+MediaSize 48x96
+MediaSize 72x96
+MediaSize 96x120
+MediaSize ArizonaGT
+MediaSize ArizonaXT
 MediaSize B0
 MediaSize B10
 MediaSize B1
